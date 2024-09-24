@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/20 15:45:52 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/24 13:47:33 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,20 @@ static char	*ft_code_singel_quotes(char *read)
 	}
 	return (read);
 }
+int ft_sp(char *read)
+{
+	int		i;
 
+	i = 0;
+	read = ft_convert_negatives(read);
+	while (read[i])
+	{
+		if (read[i] == ' ' || read[i] == '\t')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 static t_token	*ft_handle_expansion(t_data **line, \
 	t_token *token, t_token *befor)
 {
@@ -45,8 +58,8 @@ static t_token	*ft_handle_expansion(t_data **line, \
 	{
 		ptr = ft_strdup(token->content);
 		dst = ft_expande(line, ptr);
-		if (token && ft_strlen(dst) == 0 && (befor->type == APPEND || \
-			befor->type == INFILE || befor->type == OUTFILE))
+		if (token && (ft_strlen(dst) == 0 || ft_sp(dst)) && (befor->type == \
+			APPEND || befor->type == INFILE || befor->type == OUTFILE))
 		{
 			printf("minishell: %s: ambiguous redirect\n", token->content);
 			(*line)->exit_status = 1;

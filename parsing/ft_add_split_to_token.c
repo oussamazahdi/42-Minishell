@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:35:23 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/20 13:30:53 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/27 18:04:08 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,17 @@ void	replace_or_insert_token(t_data **line, \
 	{
 		after = (*token)->next;
 		free((*token)->content);
-		free(*token);
-		*token = tmp;
+		(*token)->content = ft_strdup(tmp->content);
+		(*token)->next = tmp->next;
+		free(tmp->content);
+		free(tmp);
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = after;
+		while (after->next)
+			after = after->next;
+		after->next = NULL;
+		
 	}
 }
 

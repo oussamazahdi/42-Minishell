@@ -6,47 +6,33 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/24 13:47:33 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/27 18:17:23 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static char	*ft_code_singel_quotes(char *read)
+static int	ft_sp(char *read)
 {
 	int		i;
+	char	*ptr;
 
 	i = 0;
-	read = ft_convert_negatives(read);
-	while (read[i])
-	{
-		if (read[i] == 39)
-		{
-			i++;
-			while (read[i] && read[i] != 39)
-				read[i++] *= -1;
-			if (read[i] && read[i] == 39)
-				i++;
-		}
-		else
-			i++;
-	}
-	return (read);
-}
-int ft_sp(char *read)
-{
-	int		i;
-
+	ptr = ft_strtrim(ft_convert_negatives(read), " \t");
+	while (ptr && ptr[i] && (ptr[i] == ' ' || ptr[i] == '\t'))
+		i++;
+	if (i == ft_strlen(ptr))
+		return (free(ptr), ptr = NULL, 1);
 	i = 0;
-	read = ft_convert_negatives(read);
-	while (read[i])
+	while (ptr[i])
 	{
-		if (read[i] == ' ' || read[i] == '\t')
-			return (1);
+		if (ptr[i] == ' ' || ptr[i] == '\t')
+			return (free(ptr), ptr = NULL, 1);
 		i++;
 	}
-	return (0);
+	return (free(ptr), ptr = NULL, 0);
 }
+
 static t_token	*ft_handle_expansion(t_data **line, \
 	t_token *token, t_token *befor)
 {
@@ -54,10 +40,11 @@ static t_token	*ft_handle_expansion(t_data **line, \
 	char		*ptr;
 
 	dst = NULL;
-	if (ft_check_expande(ft_code_singel_quotes(token->content)))
+	if (ft_check_expande(ft_convert_negatives(token->content))) /* change convert negatives */
 	{
 		ptr = ft_strdup(token->content);
 		dst = ft_expande(line, ptr);
+		dst = ft_change_and_join_quotes(dst);
 		if (token && (ft_strlen(dst) == 0 || ft_sp(dst)) && (befor->type == \
 			APPEND || befor->type == INFILE || befor->type == OUTFILE))
 		{
@@ -69,11 +56,11 @@ static t_token	*ft_handle_expansion(t_data **line, \
 		token->content = ft_strdup(dst);
 		free(dst);
 		if (ft_check_args_spliting(ft_convert_negatives(token->content)))
-		{
 			token = ft_add_split_to_token(line, token, befor, \
 				ft_convert_negatives(token->content));
-		}
 	}
+	else
+		token->content = ft_remove_quots(ft_convert_negatives(token->content));
 	return (token);
 }
 
@@ -96,6 +83,8 @@ static int	ft_clean_empty_tokens(t_data **line)
 	if (!(*line)->pars_token)
 	{
 		(*line)->pars_token = NULL;
+		ft_putstr_fd("minishell: : command not found\n", 2);
+		(*line)->exit_status = 127;
 		return (0);
 	}
 	return (1);
@@ -113,6 +102,7 @@ int	ft_protect_expand(t_data **line)
 		if (token && (ft_compare(token->content, "export") || \
 			token->type == HEREDOC))
 		{
+			printf ("///////////////////////////////\n");
 			if (token)
 				token = token->next;
 			if (token && befor->type == HEREDOC)

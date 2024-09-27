@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:51:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/20 09:52:31 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/25 14:28:14 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*ft_code_double_quotes(char *read)
 	int		i;
 
 	i = 0;
-	while (read[i])
+	while (read && read[i])
 	{
 		while (read[i] && read[i] != '"')
 			i++;
@@ -81,6 +81,28 @@ char	*ft_code_double_quotes(char *read)
 			i++;
 		}
 		if (read[i] && read[i] == '"')
+			i++;
+	}
+	return (read);
+}
+char	*ft_code_singel_quotes(char *read)
+{
+	int		i;
+
+	i = 0;
+	while (read && read[i])
+	{
+		while (read[i] && read[i] != 39)
+			i++;
+		if (read[i] && read[i] == 39)
+			i++;
+		while (read[i] && read[i] != 39)
+		{
+			if (read[i] > 0)
+				read[i] *= -1;
+			i++;
+		}
+		if (read[i] && read[i] == 39)
 			i++;
 	}
 	return (read);

@@ -25,7 +25,7 @@ int	verify(int result, char *str, char **cmd, char **env)
 static void	exit_with_error(t_data *data, pid_t *pids, int exit_code, int flag)
 {
 	if (flag == 1)
-		ft_printf_fd(2, "%s: command not found\n", data->exec->cmd[0]);
+		ft_printf_fd(2, "minishell: %s: command not found\n", data->exec->cmd[0]);
 	free_exec(data->exec);
 	free(pids);
 	free_for_all(data);
@@ -47,14 +47,14 @@ static void	handle_command_execution(t_data *data, int fd[], pid_t *pids)
 	result = try_paths(data->exec, path, env);
 	close_files(fd[0], fd[1]);
 	if (opendir(data->exec->cmd[0]))
-		ft_printf_fd(2, "%s: is a directory\n", data->exec->cmd[0]);
+		ft_printf_fd(2, "minishell: %s: is a directory\n", data->exec->cmd[0]);
 	else if (ft_strchr(data->exec->cmd[0], '/')
 		&& access(data->exec->cmd[0], F_OK))
-		ft_printf_fd(2, "%s: No such file or directory\n", data->exec->cmd[0]);
+		ft_printf_fd(2, "minishell: %s: No such file or directory\n", data->exec->cmd[0]);
 	else if (result == 127)
-		ft_printf_fd(2, "%s: command not found\n", data->exec->cmd[0]);
+		ft_printf_fd(2, "minishell: %s: command not found\n", data->exec->cmd[0]);
 	else
-		ft_printf_fd(2, "%s: permission denied\n", data->exec->cmd[0]);
+		ft_printf_fd(2, "minishell: %s: permission denied\n", data->exec->cmd[0]);
 	free_cmd_not_found(path, env, data, pids);
 	exit(result);
 }

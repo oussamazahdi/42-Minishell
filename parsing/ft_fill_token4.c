@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:34:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/19 10:39:55 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/27 18:29:56 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,11 @@ t_list	*ft_lstnew_token(char *content)
 	if (!ptr || !content)
 		return (NULL);
 	content = ft_dechifre(content);
-	ptr -> content = ft_strdup(content);
-	ptr -> next = NULL;
+	if (content)
+		ptr->content = ft_strdup(ft_convert_negatives(content));
+	else
+		ptr->content = ft_strdup("");
+	ptr->next = NULL;
 	return (ptr);
 }
 

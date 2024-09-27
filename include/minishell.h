@@ -248,5 +248,9 @@ int		ft_remove_spaces2(char *read);
 char	*ft_remove_spaces(char *read);
 int		ft_strcomp(char *src, char *cmp);
 int		ft_parts_len(char *read, int start);
+char	*ft_strtrim_abg(char *s1, char *set);
+char	*ft_code_singel_quotes(char *read);
+char	*ft_change_and_join_quotes(char *read);
+char	*ft_strtrim_pars(char *s1, char *set);
 
 #endif

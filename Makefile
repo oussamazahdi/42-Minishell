@@ -4,7 +4,7 @@ BUILT_DIR		=	src/builtins/
 EXEC_DIR		=	src/exec/
 FREE_DIR		=	src/free/
 PARS_DIR		=	parsing/
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -g3 #-fsanitize=address
 NAME			=	minishell
 LIBFT_DIR		=	libft
 LIBFT			=	$(LIBFT_DIR)/libft.a
@@ -49,7 +49,7 @@ $(LIBFT):
 		$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(NAME)	: $(OBJ) 
-		$(CC) $(OBJ) $(F_LFT) -lreadline  $(CPPFLAGS) $(LDFLAGS) -o $(NAME)
+		$(CC) $(OBJ) $(F_LFT) -lreadline $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $(NAME)
 
 clean	:
 		@make clean -C $(LIBFT_DIR)

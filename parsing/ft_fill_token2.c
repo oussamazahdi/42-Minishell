@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:20:23 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/24 11:20:33 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/25 14:47:00 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ void	ft_token_tmp(t_data **line)
 {
 	if ((*line)->pars_token && !(*line)->pars_token->next)
 	{
-		(*line)->pars_token->content = \
-			ft_remove_quots((*line)->pars_token->content);
+		// (*line)->pars_token->content = \
+		// 	ft_remove_quots((*line)->pars_token->content);
 		(*line)->pars_token->type = CMD;
 		ft_builtings(line);
 		(*line)->process_count = 1;

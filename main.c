@@ -6,11 +6,24 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:55:01 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/20 13:32:48 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/27 18:06:48 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
+
+void ft_print_token(t_token *token)
+{
+	t_token *tmp;
+	// int i = 0;
+
+	tmp = token;
+	while (tmp)
+	{
+		printf("token[%d]	: %s\n", tmp->type,tmp->content);
+		tmp = tmp->next;
+	}
+}
 
 static void	ft_init_struct(t_data **line)
 {
@@ -50,9 +63,9 @@ static void	ft_readline(t_data **line)
 	{
 		if (!ft_fill_token(line, new))
 			return ;
-		ft_quotes_remove(line);
 		if (!herdoc(line))
 			return ;
+		// ft_print_token((*line)->pars_token);
 		ft_fill_struct(line);
 		ft_lexer(line);
 		execute(line);

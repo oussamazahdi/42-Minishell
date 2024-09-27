@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:38:03 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/19 17:07:45 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/26 15:32:26 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*ft_hundel_quotes(char *read)
 	return (read);
 }
 
-static char	*ft_change_and_join_quotes(char *read)
+char	*ft_change_and_join_quotes(char *read)
 {
 	char	**split;
 	char	*new;
@@ -111,6 +111,7 @@ void	ft_quotes_remove(t_data **line)
 		}
 		else if (token && token->content)
 		{
+			// printf("token->content: %s\n", token->content);
 			new = ft_remove_quots(ft_convert_negatives(token->content));
 			if (new && ft_strlen(new) > 0)
 				token->content = ft_strdup(new);

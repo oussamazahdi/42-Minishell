@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:52:55 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/18 12:49:09 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/25 12:40:34 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_quotes(t_data **line, char *read)
 	if (k % 2 != 0 || s % 2 != 0)
 	{
 		printf("minishell: syntax error: unclosed quotation mark after the \
-			character\n");
+character\n");
 		(*line)->exit_status = 258;
 		free(read);
 		return (0);

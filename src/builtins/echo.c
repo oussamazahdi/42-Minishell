@@ -19,7 +19,7 @@ static bool	ft_nflag(char *arg)
 
 	n_flag = false;
 	i = 0;
-	if (arg[i] != '-')
+	if (arg[i] != '-' || (arg[i] == '-' && arg[i + 1] != 'n'))
 		return (n_flag);
 	i++;
 	while (arg[i] && arg[i] == 'n')

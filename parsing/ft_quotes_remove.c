@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:38:03 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/26 15:32:26 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/28 16:27:33 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ char	*ft_change_and_join_quotes(char *read)
 		if (read[i] == '"' || read[i] == 39)
 			read[i] = -75;
 	i = 0;
-	split = ft_split(read, -75);
+	split = ft_split_pars(read, -75);
+	if (ft_arrsize(split) == 0)
+		return (free(read), free(split), NULL);
 	if (split[0] == NULL)
 		return (free(split), NULL);
 	new = NULL;

@@ -12,8 +12,6 @@
 
 #include "../../include/minishell.h"
 
-#include "../../include/minishell.h"
-
 void	cd_builtin(t_data *data, char **args)
 {
 	int	len;

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/28 13:12:48 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/28 16:19:53 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,19 @@ char *ft_goat(char *read)
 		else
 			i++;
 	}
-	// printf("read = %s\n", read);
 	return (read);
 }
 
 static t_token	*ft_handle_expansion(t_data **line, \
-	t_token *token, t_token *befor)
+	t_token *token, t_token *befor, char *dst)
 {
-	char		*dst;
 	char		*ptr;
 
-	dst = NULL;
 	if (ft_check_expande(ft_convert_negatives(token->content)))
 	{
 		ptr = ft_strdup(token->content);
 		dst = ft_expande(line, ptr);
+		// system("leaks minishell");
 		dst = ft_change_and_join_quotes(ft_goat(dst));
 		if (token && (ft_strlen(dst) == 0 || ft_sp(dst)) && (befor->type == \
 			APPEND || befor->type == INFILE || befor->type == OUTFILE))
@@ -140,7 +138,7 @@ int	ft_protect_expand(t_data **line)
 					token = token->next;
 		}
 		else
-			token = ft_handle_expansion(line, token, befor);
+			token = ft_handle_expansion(line, token, befor, NULL);
 		befor = token;
 		if (token)
 			token = token->next;

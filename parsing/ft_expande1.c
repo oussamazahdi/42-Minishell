@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:54:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/27 20:24:55 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/28 16:21:33 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,9 +216,9 @@ char	*ft_expande(t_data **line, char *read)
 	{
 		if (status == 0)
 			read = ft_convert_not_expandebel(read);
-		// printf("read = %s\n", read);
 		tmp = ft_expande_process(read, &status, line);
 		read = ft_strdup(tmp);
+		// printf("read = [%p]\n", read);
 		if (tmp)
 			free(tmp);
 		if (status == 0)
@@ -226,5 +226,6 @@ char	*ft_expande(t_data **line, char *read)
 		status = 1;
 	}
 	read = chefer_v2(read);
+	// printf("read[%s] = [%p]\n",read, read);
 	return (read);
 }

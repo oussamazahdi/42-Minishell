@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:20:23 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/27 19:12:15 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/27 20:21:44 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static void	ft_herdoc_append(t_data **line)
 	tmp = (*line)->pars_token;
 	while (tmp)
 	{
-		if (tmp->content[0] == '>' && ft_strlen(tmp->content) == 2 && \
+		if (tmp->content && tmp->content[0] == '>' && ft_strlen(tmp->content) == 2 && \
 			tmp->next->content)
 		{
 			tmp->type = APPEND;
 			tmp = tmp->next;
 			tmp->type = APPEND;
 		}
-		if (tmp->content[0] == '<' && ft_strlen(tmp->content) == 2)
+		if (tmp->content && tmp->content[0] == '<' && ft_strlen(tmp->content) == 2)
 		{
 			tmp->type = HEREDOC;
 			if (tmp && tmp->next)
@@ -59,22 +59,23 @@ static void	ft_in_out_pipe(t_data **line)
 	tmp = (*line)->pars_token;
 	while (tmp)
 	{
-		if (tmp->content[0] == '<' && ft_strlen(tmp->content) == 1 && tmp->next)
+		if (tmp->content && tmp->content[0] == '<' && ft_strlen(tmp->content) == 1 && tmp->next)
 		{
 			tmp->type = INFILE;
 			tmp = tmp->next;
 			tmp->type = INFILE;
 		}
-		else if (tmp->content[0] == '>' && ft_strlen(tmp->content) == 1 && \
+		else if (tmp->content && tmp->content[0] == '>' && ft_strlen(tmp->content) == 1 && \
 			tmp->next)
 		{
 			tmp->type = OUTFILE;
 			tmp = tmp->next;
 			tmp->type = INFILE;
 		}
-		else if (tmp->content[0] == '|')
+		else if (tmp->content && tmp->content[0] == '|')
 			tmp->type = PIPE;
-		tmp = tmp->next;
+		if (tmp)
+			tmp = tmp->next;
 	}
 }
 

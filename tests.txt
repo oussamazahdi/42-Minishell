@@ -300,7 +300,7 @@ bash-3.2$ echo "$'$USER$'"
 $'ozahdi$'
 bash-3.2$ echo "$'$USER$'$"
 $'ozahdi$'$
-bash-3.2$ echo "$'$USER$'$"$ --------- check
+bash-3.2$ echo "$'$USER$'$"$ --------- check quotes in this commend
 $'ozahdi$'$$
 bash-3.2$ echo "$$'$USER$'$"
 58168'ozahdi$'$

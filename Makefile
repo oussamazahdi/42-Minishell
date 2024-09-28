@@ -4,7 +4,7 @@ BUILT_DIR		=	src/builtins/
 EXEC_DIR		=	src/exec/
 FREE_DIR		=	src/free/
 PARS_DIR		=	parsing/
-CFLAGS			=	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -g3 -fsanitize=address
 NAME			=	minishell
 LIBFT_DIR		=	libft
 LIBFT			=	$(LIBFT_DIR)/libft.a

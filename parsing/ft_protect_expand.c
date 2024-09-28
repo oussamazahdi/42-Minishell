@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/27 18:17:23 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/27 20:30:53 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,34 @@ static int	ft_sp(char *read)
 	return (free(ptr), ptr = NULL, 0);
 }
 
+char *ft_goat(char *read)
+{
+	int i = 0;
+	char c;
+	if (!read)
+		return (NULL);
+	while (read[i])
+	{
+		if (read[i] == 34 || read[i] == 39)
+		{
+			c = read[i];
+			i++;
+			while (read[i] && read[i] != c)
+			{
+				if (read[i] > 0 && read[i] != c)
+					read[i] *= -1;
+				i++;
+			}
+			if (read[i] && read[i] == c)
+				i++;
+		}
+		else
+			i++;
+	}
+	printf("read = %s\n", read);
+	return (read);
+}
+
 static t_token	*ft_handle_expansion(t_data **line, \
 	t_token *token, t_token *befor)
 {
@@ -44,7 +72,8 @@ static t_token	*ft_handle_expansion(t_data **line, \
 	{
 		ptr = ft_strdup(token->content);
 		dst = ft_expande(line, ptr);
-		dst = ft_change_and_join_quotes(dst);
+		dst = ft_change_and_join_quotes(ft_goat(dst)); /*you need to add a flage to this args meaning quotes removed*/
+		printf("dst = %s\n", dst);
 		if (token && (ft_strlen(dst) == 0 || ft_sp(dst)) && (befor->type == \
 			APPEND || befor->type == INFILE || befor->type == OUTFILE))
 		{
@@ -102,7 +131,6 @@ int	ft_protect_expand(t_data **line)
 		if (token && (ft_compare(token->content, "export") || \
 			token->type == HEREDOC))
 		{
-			printf ("///////////////////////////////\n");
 			if (token)
 				token = token->next;
 			if (token && befor->type == HEREDOC)

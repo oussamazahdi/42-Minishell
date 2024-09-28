@@ -67,7 +67,7 @@ typedef struct s_token
 	char			*name;
 	char			*value;
 	int				type;
-	bool			expand;
+	bool			rm_quotes;
 	struct s_token	*next;
 }	t_token;
 
@@ -216,6 +216,7 @@ int		*ft_lexer(t_data **line);
 t_token	*newnode_env(char *ptr);
 t_token	*addback_env(t_data **line, char *ptr);
 t_token	*ft_lstnew_pars(char *content);
+t_token	*ft_lstadd_back_pars2(t_token *lst, char *ptr);
 t_token	*ft_lstadd_back_pars(t_token *lst, char *ptr);
 int		ft_exit(char *read, t_data **line);
 void	handle_sigint(int sig);
@@ -253,4 +254,6 @@ char	*ft_code_singel_quotes(char *read);
 char	*ft_change_and_join_quotes(char *read);
 char	*ft_strtrim_pars(char *s1, char *set);
 
+
+void ft_print_token(t_token *token);
 #endif

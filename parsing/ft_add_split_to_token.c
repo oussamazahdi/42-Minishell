@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:35:23 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/27 18:04:08 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/28 12:17:06 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_token	*create_token_list(char **ptr)
 	while (ptr[i])
 	{
 		ptr[i] = ft_convert_negatives(ptr[i]);
-		tmp = ft_lstadd_back_pars(tmp, ptr[i]);
+		tmp = ft_lstadd_back_pars2(tmp, ptr[i]);
 		i++;
 	}
 	return (tmp);

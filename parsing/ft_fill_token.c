@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:00:08 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/27 18:06:06 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/28 12:55:23 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	ft_fill_token(t_data **line, char *read)
 	if (!ft_protect_expand(line))
 		return (0);
 	ft_expande_export(line);
+	// ft_print_token((*line)->pars_token);
 	tmp = (*line)->pars_token;
 	while (tmp)
 	{

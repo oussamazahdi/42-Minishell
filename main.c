@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:55:01 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/27 18:06:48 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/28 12:40:45 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void ft_print_token(t_token *token)
 	tmp = token;
 	while (tmp)
 	{
-		printf("token[%d]	: %s\n", tmp->type,tmp->content);
+		printf("token[%d] quotes[%s]	: %s\n", tmp->type, tmp->rm_quotes ? "true" : "false",tmp->content);
 		tmp = tmp->next;
 	}
 }

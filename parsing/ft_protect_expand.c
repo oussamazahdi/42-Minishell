@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/27 20:30:53 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/28 13:12:48 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char *ft_goat(char *read)
 		else
 			i++;
 	}
-	printf("read = %s\n", read);
+	// printf("read = %s\n", read);
 	return (read);
 }
 
@@ -68,12 +68,11 @@ static t_token	*ft_handle_expansion(t_data **line, \
 	char		*ptr;
 
 	dst = NULL;
-	if (ft_check_expande(ft_convert_negatives(token->content))) /* change convert negatives */
+	if (ft_check_expande(ft_convert_negatives(token->content)))
 	{
 		ptr = ft_strdup(token->content);
 		dst = ft_expande(line, ptr);
-		dst = ft_change_and_join_quotes(ft_goat(dst)); /*you need to add a flage to this args meaning quotes removed*/
-		printf("dst = %s\n", dst);
+		dst = ft_change_and_join_quotes(ft_goat(dst));
 		if (token && (ft_strlen(dst) == 0 || ft_sp(dst)) && (befor->type == \
 			APPEND || befor->type == INFILE || befor->type == OUTFILE))
 		{
@@ -83,6 +82,7 @@ static t_token	*ft_handle_expansion(t_data **line, \
 		}
 		free(token->content);
 		token->content = ft_strdup(dst);
+		token->rm_quotes = true;
 		free(dst);
 		if (ft_check_args_spliting(ft_convert_negatives(token->content)))
 			token = ft_add_split_to_token(line, token, befor, \

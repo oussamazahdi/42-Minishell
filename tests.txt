@@ -275,16 +275,16 @@ bash-3.2$ echo $$$"$"$$$
 58168$58168$
 bash-3.2$ echo $$"$"$$$
 58168$58168$
-bash-3.2$ echo $$$""
+bash-3.2$ echo $$$""     -------- check leaks 3
 58168
 bash-3.2$ echo $$$"$"
 58168$
-bash-3.2$ echo $""
+bash-3.2$ echo $""   -------- ckeck leaks 4
 
 bash-3.2$ echo $
 $
 bash-3.2$ 
-bash-3.2$ echo $''
+bash-3.2$ echo $''   -------- ckeck leaks 5
 
 bash-3.2$ echo $'$'
 $
@@ -318,7 +318,7 @@ bash-3.2$ echo $""
 
 bash-3.2$ echo $""$
 $
-bash-3.2$ echo ''$""
+bash-3.2$ echo ''$""   ------- check leaks 6
 
 bash-3.2$ echo  "'$USER'$"""
 'ozahdi'$

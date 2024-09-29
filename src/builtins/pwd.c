@@ -16,15 +16,25 @@ int	pwd_builtin(t_data *data)
 {
 	char	cwd[1024];
 	char	*dir;
+	t_list	*temp;
 
+	temp = data->env;
 	dir = getcwd(cwd, sizeof(cwd));
 	if (!dir)
 	{
-		perror("minishell: pwd: ");
+		while (temp)
+		{
+			if (ft_strncmp("PWD=", (char *)temp->content, 4) == 0)
+			{
+				dir = (char *)temp->content;
+				break ;
+			}
+			temp = temp->next;
+		}
 		data->exit_status = EXIT_FAILURE;
-		return (EXIT_FAILURE);
 	}
 	printf("%s\n", dir);
-	data->exit_status = EXIT_SUCCESS;
+	if (data->exit_status != EXIT_FAILURE)
+		data->exit_status = EXIT_SUCCESS;
 	return (EXIT_SUCCESS);
 }

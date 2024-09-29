@@ -14,35 +14,7 @@
 
 static void	print_export2(t_list *export);
 static void	print_export_entry(char *content);
-
-void	export_builtin(t_data *data, char **args)
-{
-	t_list	*export;
-	int		len;
-	int		i;
-
-	export = NULL;
-	len = ft_arrsize(args);
-	if (len == 1)
-		sort_env(copy_env_list(data->env, export));
-	else
-	{
-		i = 0;
-		while (++i < len)
-		{
-			if (find_in_env(data, args[i]) == 0)
-			{
-				if (ft_strchr(args[i], '+'))
-					args[i] = remove_plus(args[i]);
-				ft_lstadd_back(&data->env,
-					ft_lstnew_index(ft_strdup(args[i]), 1));
-				data->exit_status = 0;
-			}
-		}
-	}
-	if (data->exit_status != 0)
-		data->exit_status = 1;
-}
+static int	print_export3(t_list *export);
 
 int	check_key(char *var)
 {
@@ -73,12 +45,22 @@ void	print_export(t_list *export, int *flag)
 		print_export2(export);
 		return ;
 	}
+	if (print_export3(export) == 0)
+	{
+		while (export)
+		{
+			if (*flag != 1 && ft_strncmp("_=", (char *)export->content, 2) != 0
+				&& (ft_strchr((char *)export->content, '=')
+					|| ft_strncmp("OLDPWD", (char *)export->content, 6) == 0))
+				print_export_entry(export->content);
+			export = export->next;
+		}
+		return ;
+	}
 	while (export)
 	{
 		if (*flag != 1 && ft_strncmp("_=", (char *)export->content, 2) != 0)
-		{
 			print_export_entry(export->content);
-		}
 		export = export->next;
 	}
 }
@@ -111,6 +93,19 @@ static void	print_export_entry(char *content)
 
 static void	print_export2(t_list *export)
 {
+	if (print_export3(export) != 1)
+	{
+		while (export)
+		{
+			if (ft_strncmp("PATH=", (char *)export->content, 5) != 0
+				&& ft_strncmp("_=", (char *)export->content, 2) != 0
+				&& (ft_strchr((char *)export->content, '=')
+					|| ft_strncmp("OLDPWD", (char *)export->content, 6) == 0))
+				print_export_entry((char *)export->content);
+			export = export->next;
+		}
+		return ;
+	}
 	while (export)
 	{
 		if (ft_strncmp("PATH=", (char *)export->content, 5) != 0
@@ -120,4 +115,25 @@ static void	print_export2(t_list *export)
 		}
 		export = export->next;
 	}
+}
+
+static int	print_export3(t_list *export)
+{
+	t_list	*temp;
+
+	temp = export;
+	while (temp)
+	{
+		if (ft_strncmp((char *)temp->content, "SHLVL=", 6) == 0)
+		{
+			if (ft_strchr((char *)temp->content, '1') != NULL)
+				return (1);
+			else if (ft_strchr((char *)temp->content, '2') != NULL)
+				return (2);
+			else
+				return (0);
+		}
+		temp = temp->next;
+	}
+	return (1);
 }

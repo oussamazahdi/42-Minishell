@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:51:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/25 14:28:14 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 10:44:57 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char	*ft_code_double_quotes(char *read)
 	}
 	return (read);
 }
+
 char	*ft_code_singel_quotes(char *read)
 {
 	int		i;
@@ -129,17 +130,4 @@ char	*ft_decode_double_quotes(char *read)
 			i++;
 	}
 	return (read);
-}
-
-char	*ft_strcpy(char *src, char *dst, int start, int end)
-{
-	int	i;
-
-	i = 0;
-	if (!src || start > end)
-		return (NULL);
-	while (start < end)
-		dst[i++] = src[start++];
-	dst[i] = '\0';
-	return (dst);
 }

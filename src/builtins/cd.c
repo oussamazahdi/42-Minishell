@@ -51,7 +51,7 @@ void	handle_cd_home(t_data *data)
 				free(temp->content);
 				temp->content = ft_strjoin("PWD=", data->home);
 			}
-			else if (ft_strncmp("OLDPWD", (char *)temp->content, 7) == 0)
+			else if (ft_strncmp("OLDPWD", (char *)temp->content, 6) == 0)
 			{
 				free(temp->content);
 				temp->content = ft_strjoin("OLDPWD=", old);
@@ -60,4 +60,47 @@ void	handle_cd_home(t_data *data)
 		}
 		data->exit_status = 0;
 	}
+}
+
+void	handle_cd_dash(t_data *data)
+{
+	char	*path;
+	char	*old;
+
+	path = get_env_var_value(data->env, "OLDPWD");
+	old = get_env_var_value(data->env, "PWD");
+	if (path == NULL || path[0] != '/')
+	{
+		ft_putendl_fd("cd: OLDPWD not set", 2);
+		data->exit_status = 1;
+		return ;
+	}
+	if (chdir(path) != 0)
+	{
+		perror("cd");
+		data->exit_status = 1;
+		return ;
+	}
+	update_env_var(data->env, "PWD=", path, data);
+	update_env_var(data->env, "OLDPWD=", old, data);
+	if (data->exit_status != 1)
+	{
+		printf("%s\n", path);
+		data->exit_status = 0;
+	}
+}
+
+void	handle_cd_with_args(t_data *data, char *arg)
+{
+	if (ft_strncmp(arg, "-", 2) == 0)
+		handle_cd_dash(data);
+	else if (ft_strncmp(arg, "--", 3) == 0)
+	{
+		handle_cd_home(data);
+		data->exit_status = 0;
+	}
+	else if (ft_strncmp(arg, "~", 2) == 0)
+		handle_cd_home(data);
+	else
+		handle_cd_directory(data, arg);
 }

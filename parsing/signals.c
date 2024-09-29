@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 10:46:52 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/19 10:45:07 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 11:22:58 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 int	ft_exit(char *read, t_data **line)
 {
+	// if (g_herdoc == 1)
+	// {
+	// 	(*line)->exit_status = 1;
+	// 	g_herdoc = 0;
+	// 	return (1);
+	// }
 	if (read && ft_strlen(read) == 0)
 	{
 		free(read);

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:38:03 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/28 16:27:33 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 10:47:22 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void	ft_quotes_remove(t_data **line)
 		}
 		else if (token && token->content)
 		{
-			// printf("token->content: %s\n", token->content);
 			new = ft_remove_quots(ft_convert_negatives(token->content));
 			if (new && ft_strlen(new) > 0)
 				token->content = ft_strdup(new);

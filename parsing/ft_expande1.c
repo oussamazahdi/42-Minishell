@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:54:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/28 16:21:33 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 10:47:50 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static char	*ft_expande_process(char *read, int *status, t_data **line)
 	return (tmp);
 }
 
-char *ft_convert_not_expandebel(char *read)
+char	*ft_convert_not_expandebel(char *read)
 {
 	read = ft_convert_negatives(read);
 	read = ft_code_double_quotes(read);
@@ -95,111 +95,6 @@ char *ft_convert_not_expandebel(char *read)
 	return (read);
 }
 
-char	*ft_chefer_v2_con(char *read, int *x, char c)
-{
-	int		i;
-
-	i = *x;
-	while (read[i] && read[i] != c)
-	{
-		if (read[i] > 0 && read[i] != c)
-			read[i] *= -1;
-		i++;
-	}
-	*x = i;
-	return (read);
-}
-char *chefer_v2(char *read)
-{
-	int		i;
-
-	i = 0;
-	if (!read)
-		return (NULL);
-	while(read && read[i])
-	{
-		if (read[i] > 0 && read[i] != 39 && read[i] != '"')
-			read[i] *= - 1;
-		else if (read[i] && read[i] == 39)
-		{
-			i++;
-			read = ft_chefer_v2_con(read, &i, 39);
-		}
-		else if (read[i] && read[i] == '"')
-		{	
-			i++;
-			read = ft_chefer_v2_con(read, &i, '"');
-		}
-		if (read[i])
-			i++;
-	}
-	return (read);
-}
-// char *chefer_v2(char *read)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	if (!read)
-// 		return (NULL);
-// 	while(read && read[i])
-// 	{
-// 		if (read[i] > 0 && read[i] != 39 && read[i] != '"')
-// 			read[i] *= - 1;
-// 		else if (read[i] && read[i] == 39)
-// 		{	
-// 			i++;
-// 			while (read[i] && read[i] != 39)
-// 			{	
-// 				if (read[i] > 0 && read[i] != 39)
-// 					read[i] *= - 1;
-// 				i++;
-// 			}
-// 		}
-// 		else if (read[i] && read[i] == '"')
-// 		{	
-// 			i++;
-// 			while (read[i] && read[i] != '"')
-// 			{	
-// 				if (read[i] > 0 && read[i] != '"')
-// 					read[i] *= - 1;
-// 				i++;
-// 			}
-// 		}
-// 		if (read[i])
-// 			i++;
-// 	}
-// 	return (read);
-// }
-
-// char	*ft_expande(t_data **line, char *read)
-// {
-// 	int		status;
-// 	char	*tmp;
-
-// 	tmp = NULL;
-// 	if (!read || ft_strlen(read) == 0)
-// 		return (NULL);
-// 	read = ft_rebuild(read);
-// 	status = 0;
-// 	if (!ft_check_expande(read))
-// 		return (read);
-// 	while (ft_check_expande(read))
-// 	{
-// 		if (status == 0)
-// 			read = ft_convert_not_expandebel(read);
-// 		// printf("read = %s\n", read);
-// 		tmp = ft_expande_process(read, &status, line);
-// 		read = ft_strdup(tmp);
-// 		if (tmp)
-// 			free(tmp);
-// 		if (status == 0)
-// 			read = ft_decode_double_quotes(read);
-// 		status = 1;
-// 	}
-// 	read = chefer_v2(read);
-// 	return (read);
-// }
 char	*ft_expande(t_data **line, char *read)
 {
 	int		status;
@@ -218,7 +113,6 @@ char	*ft_expande(t_data **line, char *read)
 			read = ft_convert_not_expandebel(read);
 		tmp = ft_expande_process(read, &status, line);
 		read = ft_strdup(tmp);
-		// printf("read = [%p]\n", read);
 		if (tmp)
 			free(tmp);
 		if (status == 0)
@@ -226,6 +120,5 @@ char	*ft_expande(t_data **line, char *read)
 		status = 1;
 	}
 	read = chefer_v2(read);
-	// printf("read[%s] = [%p]\n",read, read);
 	return (read);
 }

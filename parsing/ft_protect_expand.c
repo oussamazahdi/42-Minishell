@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/28 16:19:53 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 10:49:20 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ static int	ft_sp(char *read)
 	return (free(ptr), ptr = NULL, 0);
 }
 
-char *ft_goat(char *read)
+char	*ft_goat(char *read)
 {
-	int i = 0;
-	char c;
+	int		i;
+	char	c;
+
+	i = 0;
 	if (!read)
 		return (NULL);
 	while (read[i])
@@ -69,7 +71,6 @@ static t_token	*ft_handle_expansion(t_data **line, \
 	{
 		ptr = ft_strdup(token->content);
 		dst = ft_expande(line, ptr);
-		// system("leaks minishell");
 		dst = ft_change_and_join_quotes(ft_goat(dst));
 		if (token && (ft_strlen(dst) == 0 || ft_sp(dst)) && (befor->type == \
 			APPEND || befor->type == INFILE || befor->type == OUTFILE))

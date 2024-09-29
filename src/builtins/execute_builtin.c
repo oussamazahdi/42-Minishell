@@ -30,3 +30,32 @@ void	execute_builtin(t_data *data, t_exec *exec, pid_t *pids)
 		cd_builtin(data, exec->cmd);
 	ft_add_enver(data);
 }
+
+void	export_builtin(t_data *data, char **args)
+{
+	t_list	*export;
+	int		len;
+	int		i;
+
+	export = NULL;
+	len = ft_arrsize(args);
+	if (len == 1)
+		sort_env(copy_env_list(data->env, export));
+	else
+	{
+		i = 0;
+		while (++i < len)
+		{
+			if (find_in_env(data, args[i]) == 0)
+			{
+				if (ft_strchr(args[i], '+'))
+					args[i] = remove_plus(args[i]);
+				ft_lstadd_back(&data->env,
+					ft_lstnew_index(ft_strdup(args[i]), 1));
+				data->exit_status = 0;
+			}
+		}
+	}
+	if (data->exit_status != 0)
+		data->exit_status = 1;
+}

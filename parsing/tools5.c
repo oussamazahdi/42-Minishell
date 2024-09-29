@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 21:12:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/27 18:13:03 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 10:43:57 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,41 +136,3 @@ int	ft_parts_len(char *read, int start)
 	}
 	return (len);
 }
-
-char	*ft_strtrim_pars(char *s1, char *set)
-{
-	int		start;
-	int		i;
-	int		end;
-	char	*str;
-
-	if (!s1 || !set)
-		return (NULL);
-	start = 0;
-	i = 0;
-	while (*s1 && ft_strchr(set, *s1))
-		s1++;
-	end = ft_strlen(s1);
-	while (end && ft_strchr(set, s1[end - 1]))
-		end--;
-	str = (char *)malloc((end + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	while (start < end)
-	{
-		str[i] = s1[start];
-		i++;
-		start++;
-	}
-	str[i] = '\0';
-	return (free(s1), str);
-}
-
-
-// char *ft_convert_not_expandebel(char *read)
-// {
-// 	read = ft_convert_negatives(read);
-// 	read = ft_code_double_quotes(read);
-// 	read = ft_code_single_quotes(read);
-// 	return (read);
-// }

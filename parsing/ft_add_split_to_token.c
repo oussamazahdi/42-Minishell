@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:35:23 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/28 12:17:06 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 10:45:50 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	replace_or_insert_token(t_data **line, \
 		while (after->next)
 			after = after->next;
 		after->next = NULL;
-		
 	}
 }
 

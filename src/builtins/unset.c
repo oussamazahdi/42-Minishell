@@ -21,7 +21,7 @@ void	unset_builtin(t_data *data, char **args)
 	int	i;
 
 	i = 0;
-	while (args[++i] != NULL)
+	while (args[++i] != NULL && ft_strncmp(args[1], "_", 1) != 0)
 	{
 		if (!ft_check(args[i]) || ft_strchr(args[i], '=') != NULL)
 		{

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 14:26:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/20 10:34:25 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 11:12:46 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,46 @@ void	ft_rederections(t_data **line)
 				token->next->type = ARG;
 		}
 		token = token->next;
+	}
+}
+
+static char	*extract_str(t_token *tmp)
+{
+	char	*str;
+
+	if (tmp->type == CMD && tmp->content[0] == 34)
+		str = ft_substr(tmp->content, 1, ft_strlen(tmp->content) - 2);
+	else if (tmp->type == CMD && tmp->content[0] == 39)
+		str = ft_substr(tmp->content, 1, ft_strlen(tmp->content) - 2);
+	else
+		str = ft_strdup(tmp->content);
+	return (str);
+}
+
+void	ft_builtings(t_data **line)
+{
+	t_token		*tmp;
+	char		*str;
+
+	(*line)->builtin_check = 0;
+	tmp = (*line)->pars_token;
+	while (tmp)
+	{
+		str = extract_str(tmp);
+		free(tmp->content);
+		tmp->content = ft_strdup(str);
+		free(str);
+		if (tmp && tmp->type == CMD && (ft_compare(tmp->content, "echo") || \
+			ft_compare(tmp->content, "export") || \
+			ft_compare(tmp->content, "pwd") || \
+			ft_compare(tmp->content, "unset") || \
+			ft_compare(tmp->content, "env") || \
+			ft_compare(tmp->content, "exit") || \
+			ft_compare(tmp->content, "cd")))
+		{
+			(*line)->builtin_check = 1;
+			tmp->type = BUILTIN;
+		}
+		tmp = tmp->next;
 	}
 }

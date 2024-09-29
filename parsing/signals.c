@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 10:46:52 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/29 11:22:58 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 16:40:53 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 int	ft_exit(char *read, t_data **line)
 {
-	// if (g_herdoc == 1)
-	// {
-	// 	(*line)->exit_status = 1;
-	// 	g_herdoc = 0;
-	// 	return (1);
-	// }
-	if (read && ft_strlen(read) == 0)
+	if (g_herdoc == 1)
 	{
-		free(read);
-		read = NULL;
-		(*line)->exit_status = 0;
-		return (0);
+		(*line)->exit_status = 1;
+		g_herdoc = 0;
+		if (!read)
+		{
+			printf("exit\n");
+			exit((*line)->exit_status);
+		}
+		if (read && ft_strlen(read) == 0)
+			return (free(read), 0);
 	}
-	if (ft_strlen(read) > 0)
+	if (read && ft_strlen(read) == 0)
+		return (free(read), (*line)->exit_status = 0, 0);
+	if (read && ft_strlen(read) > 0)
 		add_history(read);
 	if (!read)
 	{
@@ -45,6 +46,7 @@ void	handle_sigint(int sig)
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
+		g_herdoc = 1;
 		rl_redisplay();
 	}
 }

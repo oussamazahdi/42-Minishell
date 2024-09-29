@@ -36,7 +36,7 @@ SRC				=	main.c $(PARS_DIR)ft_add_split_to_token.c $(PARS_DIR)ft_create_env.c\
 					$(EXEC_DIR)child_dups.c $(EXEC_DIR)pipes.c \
 					$(EXEC_DIR)get_cmd_and_builtin.c $(EXEC_DIR)wait_all_process.c \
 					$(EXEC_DIR)verify.c $(REDIRECT_DIR)files.c \
-					$(REDIRECT_DIR)deal_with_fd.c $(FREE_DIR)free.c ft_free_all.c\
+					$(REDIRECT_DIR)deal_with_fd.c $(FREE_DIR)free.c  $(FREE_DIR)ft_free_all.c\
 
 OBJ				=	$(SRC:.c=.o)
 

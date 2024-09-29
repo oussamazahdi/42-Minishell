@@ -6,11 +6,37 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:55:01 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/29 11:21:01 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 17:53:01 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
+
+// void ft_print_token2(t_list *token, int *lexer)
+// {
+// 	int x = 0;
+// 	int y = 0;
+// 	while (token)
+// 	{
+// 		printf("token->content = %s\n", token->content);
+// 		x++;
+// 		token = token->next;
+// 	}
+// 	while (y < x)
+// 	{
+// 		printf("lexer[%d] = %d\n", y, lexer[y]);
+// 		y++;
+// 	}
+// }
+
+// void ft_print_token(t_token *token)
+// {
+// 	while (token)
+// 	{
+// 		printf("token->content[%d] = %s\n",token->type ,token->content);
+// 		token = token->next;
+// 	}
+// }
 
 static void	ft_init_struct(t_data **line)
 {
@@ -52,8 +78,11 @@ static void	ft_readline(t_data **line)
 			return ;
 		if (!herdoc(line))
 			return ;
+		// ft_print_token((*line)->pars_token);
 		ft_fill_struct(line);
 		ft_lexer(line);
+		// ft_print_token2((*line)->token, (*line)->lexer);
+		// printf("exit_status = [%d]\n", (*line)->exit_status);
 		execute(line);
 		if (isatty(STDIN_FILENO) && tcsetattr(0, TCSANOW, &att))
 			perror("termios");
@@ -65,6 +94,8 @@ int	main(int ac, char **av, char **env)
 {
 	t_data		*line;
 
+	if (!isatty(STDIN_FILENO))
+		exit (1);
 	if (ac != 1)
 		return (1);
 	(void)av;

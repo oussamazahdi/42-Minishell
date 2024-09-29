@@ -6,11 +6,11 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 17:32:04 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/20 10:54:06 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 11:51:07 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/minishell.h"
+#include "../../include/minishell.h"
 
 void	ft_free_double(char **ptr)
 {

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/29 10:49:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 16:14:25 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,11 @@ int	ft_protect_expand(t_data **line)
 					token = token->next;
 		}
 		else
+		{
 			token = ft_handle_expansion(line, token, befor, NULL);
+			if (!token)
+				return (0);
+		}
 		befor = token;
 		if (token)
 			token = token->next;

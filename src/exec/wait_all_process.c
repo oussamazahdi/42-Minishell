@@ -18,12 +18,10 @@ static void	handle_process_status(t_data *data, int status)
 	{
 		if (WTERMSIG(status) == 3)
 		{
-			write(1, "Quit: 3\n", 8);
 			data->exit_status = 131;
 		}
 		else if (WTERMSIG(status) == 2)
 		{
-			write(1, "\n", 1);
 			data->exit_status = 130;
 		}
 	}
@@ -31,6 +29,8 @@ static void	handle_process_status(t_data *data, int status)
 	{
 		data->exit_status = WEXITSTATUS(status);
 	}
+	if (data->exit_status == 130)
+		write(1, "\n", 1);
 }
 
 void	wait_all_processes(t_data *data, pid_t *pids, int flag)
@@ -52,4 +52,8 @@ void	wait_all_processes(t_data *data, pid_t *pids, int flag)
 			handle_process_status(data, status);
 		}
 	}
+	if (data->exit_status == 131)
+		write(1, "Quit: 3\n", 8);
+	if (data->exit_status == 130)
+		write(1, "\n", 1);
 }

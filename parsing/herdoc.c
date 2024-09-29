@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:01:52 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/20 13:32:24 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 11:26:38 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	ft_handle_heredoc_token(t_data **line, \
 		(*line)->fd_heredoc = NULL;
 		free(direct);
 		g_herdoc = 0;
-		(*line)->exit_status = 258;
+		(*line)->exit_status = 1;
 		return (0);
 	}
 	close((*line)->fd_heredoc[i]);

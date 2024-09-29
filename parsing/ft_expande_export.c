@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 18:18:59 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/28 12:52:30 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/29 11:58:37 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,19 @@ void	ft_expande_export(t_data **line)
 	t_token		*befor;
 
 	token = (*line)->pars_token;
+	befor = (*line)->pars_token;
 	while (token)
 	{
 		expand_tilde_to_home(line, token);
-		if (token->type == BUILTIN && ft_compare(token->content, "export"))
+		if (token && token->type == BUILTIN && \
+			ft_compare(token->content, "export"))
 		{
 			befor = token;
 			token = token->next;
 			handle_export_and_expand_args(line, &token, &befor);
 		}
-		else if (token->rm_quotes == false && befor->type != HEREDOC)
+		else if (token && token->rm_quotes == false && \
+			befor && befor->type != HEREDOC)
 			token->content = ft_remove_quots(token->content);
 		befor = token;
 		if (token)

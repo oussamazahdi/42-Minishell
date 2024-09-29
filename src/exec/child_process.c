@@ -33,8 +33,9 @@ void	child_process(t_data *data, t_list *token, int *lexer, pid_t *pids)
 		data->exit_status = 126;
 	close_files(fd[0], fd[1]);
 	free(pids);
+	int x = data->exit_status;
 	free_for_all(data);
-	exit(1);
+	exit(x);
 }
 
 void	update_last_command(t_data *data, char *command)

@@ -86,6 +86,12 @@ static void	execute_child_process(t_data *data, t_args *args)
 			temp = temp->next;
 		}
 		pids[data->args->index] = fork();
+		if (pids[data->args->index] == -1)
+		{
+			perror("fork");
+			data->exit_status = 1;
+			break ;
+		}
 		child_proc_utils(data, temp, &data->lexer[i], pids);
 		while (temp != NULL && data->lexer[i] != PIPE)
 		{

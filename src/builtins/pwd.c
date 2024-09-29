@@ -26,7 +26,7 @@ int	pwd_builtin(t_data *data)
 		{
 			if (ft_strncmp("PWD=", (char *)temp->content, 4) == 0)
 			{
-				dir = (char *)temp->content;
+				dir = (char *)temp->content + 4;
 				break ;
 			}
 			temp = temp->next;

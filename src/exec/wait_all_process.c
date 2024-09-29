@@ -27,7 +27,8 @@ static void	handle_process_status(t_data *data, int status)
 	}
 	else if (WIFEXITED(status))
 	{
-		data->exit_status = WEXITSTATUS(status);
+		if (data->exit_status != 1)
+			data->exit_status = WEXITSTATUS(status);
 	}
 	if (data->exit_status == 130)
 		write(1, "\n", 1);

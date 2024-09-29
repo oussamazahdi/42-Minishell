@@ -40,6 +40,7 @@ static void	commands_fork(t_args *args, t_data *data)
 		execute_builtin_parent_process(data);
 	else
 		execute_child_process(data, args);
+	// printf("exit_status = %d\n", data->exit_status);
 }
 
 static void	execute_builtin_parent_process(t_data *data)

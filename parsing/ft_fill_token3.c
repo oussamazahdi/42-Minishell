@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 14:26:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/29 11:12:46 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/30 09:53:33 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ void	ft_commends(t_data **line)
 	while (tmp)
 	{
 		while (tmp && tmp->type != ARG)
+		{
+			if (tmp->type == PIPE)
+				(*line)->process_count++;
 			tmp = tmp->next;
+		}
 		if (tmp && tmp->type == ARG)
 			tmp->type = CMD;
 		while (tmp && tmp->type != PIPE)

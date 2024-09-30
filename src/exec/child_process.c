@@ -22,7 +22,7 @@ void	child_process(t_data *data, t_list *token, int *lexer, pid_t *pids)
 	{
 		get_cmd_and_args(token, lexer, data);
 		deal_with_pipes(data);
-		printf("************************************* 01\n");
+		// printf("************************************* 01\n");
 		if (fd[0] != -2 || fd[1] != -2)
 			redirect_files(fd[0], fd[1]);
 		if (data->has_builtin == 1 || data->has_cmd == 1)

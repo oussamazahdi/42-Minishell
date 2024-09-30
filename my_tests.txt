@@ -1,0 +1,218 @@
+➜ Minishell $ echo $
+$
+➜ Minishell $ echo $""
+
+➜ Minishell $ echo $""$
+$
+➜ Minishell $ echo $"$"$
+$$
+➜ Minishell $ echo $$$$"$"$$$
+$$
+➜ Minishell $ echo $$$$"$"$$$?
+$0
+➜ Minishell $ echo $$$$"$"$$$$?
+$?
+➜ Minishell $ echo '$$$$"$"$$$?'
+$$$$"$"$$$?
+➜ Minishell $ echo $$"$"$$123$?
+$1230
+➜ Minishell $ echo $$"$"$123$?
+$230
+➜ Minishell $ echo $a$"a$"$123$?
+a$230
+➜ Minishell $ echo $USER'$USER'"$USER"'"$USER"'"'$USER'"
+ozahdi$USERozahdi"$USER"'ozahdi'
+➜ Minishell $ echo $USER '$USER' "$USER" '"$USER"' "'$USER'"
+ozahdi $USER ozahdi "$USER" 'ozahdi'
+➜ Minishell $ ''
+minishell: : command not found
+➜ Minishell $ ""
+minishell: : command not found
+➜ Minishell $ | kdjfksjfklsd
+minishell : syntax error near unexpected token
+➜ Minishell $ echo $?
+258
+➜ Minishell $ cat >> | jlad
+minishell : syntax error near unexpected token
+➜ Minishell $ echo $?
+258
+➜ Minishell $ echo ''"
+minishell: syntax error: unclosed quotation mark after the character
+➜ Minishell $ echo $?
+258
+➜ Minishell $                         /*add spaces her*/
+➜ Minishell $                           /*add tab her*/
+➜ Minishell $                           ''
+minishell: : command not found
+➜ Minishell $ echo $?
+127
+➜ Minishell $                           ''
+minishell: : command not found
+➜ Minishell $ echo $?
+127
+minishell: : command not found
+➜ Minishell $                           
+➜ Minishell $                                           
+➜ Minishell $                   ls                   -l                      
+total 256
+-rw-r--r--    1 ozahdi  candidate    2469 Sep 30 09:43 Makefile
+-rw-r--r--    1 ozahdi  candidate       0 Sep 30 09:59 a
+drwxr-xr-x    4 ozahdi  candidate     136 Sep 30 09:43 include
+drwxr-xr-x  106 ozahdi  candidate    3604 Sep 30 09:54 libft
+-rw-r--r--    1 ozahdi  candidate    2807 Sep 30 10:17 main.c
+-rw-r--r--    1 ozahdi  candidate    2904 Sep 30 10:20 main.o
+-rwxr-xr-x    1 ozahdi  candidate  112896 Sep 30 10:20 minishell
+-rw-r--r--    1 ozahdi  candidate    1333 Sep 30 10:21 my_tests.txt
+drwxr-xr-x   62 ozahdi  candidate    2108 Sep 30 10:20 parsing
+drwxr-xr-x    7 ozahdi  candidate     238 Sep 30 09:43 src
+➜ Minishell $ ls -la|cat>>a|cat<<a<<a<<a<<a
+> a
+> a
+> a
+> a
+➜ Minishell $ ls -la|cat>>a|cat<<a<<a<<a<<a|ls -la
+> a
+> a
+> a
+> a
+total 280
+drwxr-xr-x   14 ozahdi  candidate     476 Sep 30 10:20 .
+drwxr-xr-x    9 ozahdi  candidate     306 Sep 30 09:43 ..
+-rw-r--r--    1 ozahdi  candidate    6148 Sep 30 09:43 .DS_Store
+drwxr-xr-x   13 ozahdi  candidate     442 Sep 30 09:54 .git
+-rw-r--r--    1 ozahdi  candidate    2469 Sep 30 09:43 Makefile
+-rw-r--r--    1 ozahdi  candidate     874 Sep 30 10:24 a
+drwxr-xr-x    4 ozahdi  candidate     136 Sep 30 09:43 include
+drwxr-xr-x  106 ozahdi  candidate    3604 Sep 30 09:54 libft
+-rw-r--r--    1 ozahdi  candidate    2807 Sep 30 10:17 main.c
+-rw-r--r--    1 ozahdi  candidate    2904 Sep 30 10:20 main.o
+-rwxr-xr-x    1 ozahdi  candidate  112896 Sep 30 10:20 minishell
+-rw-r--r--    1 ozahdi  candidate    1333 Sep 30 10:21 my_tests.txt
+drwxr-xr-x   62 ozahdi  candidate    2108 Sep 30 10:20 parsing
+drwxr-xr-x    7 ozahdi  candidate     238 Sep 30 09:43 src
+➜ Minishell $ echo          oussama         zahdi       1337    "oussama        zahdi"     '1337                   khouribga'
+oussama zahdi 1337 oussama      zahdi 1337                      khouribga
+➜ Minishell $                   ""
+minishell: : command not found
+➜ Minishell $ echo $
+$
+➜ Minishell $ echo $_
+$
+➜ Minishell $ echo $?
+0
+➜ Minishell $ dsjkljfd
+dsjkljfd: command not found
+➜ Minishell $ echo $?
+127
+➜ Minishell $ echo $HOME
+/Users/ozahdi
+➜ Minishell $ echo '$HOME'
+$HOME
+➜ Minishell $ echo "$HOME"
+/Users/ozahdi
+➜ Minishell $ echo '"$HOME"'
+"$HOME"
+➜ Minishell $ echo '"""""""$HOME"""""""'
+"""""""$HOME"""""""
+➜ Minishell $ echo $?
+0
+➜ Minishell $ echo $$
+
+➜ Minishell $ echo $$$
+$
+➜ Minishell $ echo $$$""
+
+➜ Minishell $ echo"" $$$
+$
+➜ Minishell $ echo ""$$$
+$
+➜ Minishell $ echo $"$"$
+$$
+➜ Minishell $ echo $'$'$
+$$
+➜ Minishell $ echo $$$"'$USER'" $$$"'$HOME' $USER"$$$_
+'ozahdi' '/Users/ozahdi' ozahdi
+➜ Minishell $ echo $_
+ozahdi
+➜ Minishell $ echo $$$"'$USER'" $$$"'$HOME' $USER"$_
+'ozahdi' '/Users/ozahdi' ozahdiozahdi
+➜ Minishell $ echo $$$"'$USER'" $$$"'$HOME' $USER"$$$_
+'ozahdi' '/Users/ozahdi' ozahdiozahdiozahdi
+➜ Minishell $ echo $"$USER"
+ozahdi
+➜ Minishell $ echo $"USER"
+USER
+➜ Minishell $ cat << a
+> $USER
+> $_
+> "$_" '$_'
+> $PWD
+> "$HOME" '$HOME' $HOME
+> "'$USER'" '"$USER"' '$USER' "$USER" $USER
+> a
+ozahdi
+USER
+"USER" 'USER'
+/Users/ozahdi/Desktop/minishell2
+"/Users/ozahdi" '/Users/ozahdi' /Users/ozahdi
+"'ozahdi'" '"ozahdi"' 'ozahdi' "ozahdi" ozahdi
+➜ Minishell $ cat << a
+> $?
+> $~
+> ~
+> $.
+> $_
+> a
+0
+$~
+~
+$.
+$_
+cat
+➜ Minishell $ cat << $$$"$"$
+> $USER
+> '$PWD'
+> "$HOME"
+> $$$$
+$USER
+'$PWD'
+"$HOME"
+➜ Minishell $ cat << a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a
+> a
+> a
+> a
+> a
+> a
+> a
+> a
+> a
+> a
+> a
+> a
+> a
+> a
+> a
+> a
+> a
+➜ Minishell $ cat << a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a<< a << a
+minishell : maximum here-document count exceeded
+➜ Minishell $ echo $?
+2
+➜ Minishell $ << a cat
+> oussama
+> zahdi
+> a
+oussama
+zahdi
+➜ Minishell $ << ''
+> 
+➜ Minishell $ << ""
+> 
+➜ Minishell $ << $""
+> 
+➜ Minishell $ << a<< a<<
+> a
+> a
+minishell: syntax error near unexpected token `newline'
+➜ Minishell $ echo $?
+258

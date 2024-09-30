@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:55:01 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/29 17:53:01 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/30 10:17:42 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,8 @@ static void	ft_readline(t_data **line)
 			return ;
 		if (!herdoc(line))
 			return ;
-		// ft_print_token((*line)->pars_token);
 		ft_fill_struct(line);
 		ft_lexer(line);
-		// ft_print_token2((*line)->token, (*line)->lexer);
-		// printf("exit_status = [%d]\n", (*line)->exit_status);
 		execute(line);
 		if (isatty(STDIN_FILENO) && tcsetattr(0, TCSANOW, &att))
 			perror("termios");

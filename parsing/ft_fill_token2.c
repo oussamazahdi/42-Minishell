@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:20:23 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/29 11:14:27 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/30 11:38:43 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_token_tmp(t_data **line)
 	ft_builtings(line);
 	if (herdoc_pars(line) > 33)
 	{
-		printf("minishell : maximum here-document count exceeded\n");
+		printf("minishell: maximum here-document count exceeded\n");
 		exit (2);
 	}
 	ft_rederections(line);

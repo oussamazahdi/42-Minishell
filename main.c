@@ -6,28 +6,29 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:55:01 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/01 11:16:19 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/01 11:44:11 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
 
-void ft_print_token2(t_list *token, int *lexer)
-{
-	int x = 0;
-	while (token)
-	{
-		printf("\x1b[38;5;214mtoken->content [%d] : [%s]\x1b[0m\n", lexer[x], token->content);
-		x++;
-		token = token->next;
-	}
-}
+// void ft_print_token2(t_list *token, int *lexer)
+// {
+// 	int x = 0;
+// 	while (token)
+// 	{
+// 		printf("\x1b[38;5;214mtoken->content [%d] : [%s]\x1b[0m\n", lexer[x], token->content);
+// 		x++;
+// 		token = token->next;
+// 	}
+// }
 
 // void ft_print_token(t_token *token)
 // {
 // 	while (token)
 // 	{
-// 		printf("token->content[%d] = %s\n",token->type ,token->content);
+// 		printf("\x1b[38;5;214mtoken->content[%d] [%d] = %s\x1b[0m\n",token->type, token->flag ,token->content);
+// 		// printf("\x1b[38;5;214mtoken->content[%d] [%s] = %s\x1b[0m\n",token->type, token->flag ? "True" : "False" ,token->content);
 // 		token = token->next;
 // 	}
 // }
@@ -74,7 +75,6 @@ static void	ft_readline(t_data **line)
 			return ;
 		ft_fill_struct(line);
 		ft_lexer(line);
-		ft_print_token2((*line)->token, (*line)->lexer);
 		execute(line);
 		if (isatty(STDIN_FILENO) && tcsetattr(0, TCSANOW, &att))
 			perror("termios");

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/30 19:15:33 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/01 12:21:20 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,28 +92,41 @@ static t_token	*ft_handle_expansion(t_data **line, \
 	return (token);
 }
 
+void	ft_free_node(t_token **token)
+{
+	if (token && *token && (*token)->content)
+		free((*token)->content);
+	(*token)->content = NULL;
+	if (token && *token)
+		free(*token);
+	*token = NULL;
+}
+
 static int	ft_clean_empty_tokens(t_data **line)
 {
 	t_token		*token;
+	bool		status;
 
 	if (!(*line)->pars_token)
 		return (0);
 	token = (*line)->pars_token;
 	while ((*line)->pars_token && ft_strlen((*line)->pars_token->content) == 0)
 	{
+		status = (*line)->pars_token->flag;
 		(*line)->pars_token = (*line)->pars_token->next;
-		free(token->content);
-		token->content = NULL;
-		free(token);
-		token = NULL;
+		if (!ft_strlen(token->content) && status == true)
+		{
+			ft_putstr_fd("minishell: command not found\n", 2);
+			ft_free_node(&token);
+			return (ft_free_all(line), (*line)->exit_status = 127, 0);
+		}
+		ft_free_node(&token);
 		token = (*line)->pars_token;
 	}
-	if (!(*line)->pars_token)
+	if (!(*line)->pars_token && status == true)
 	{
-		(*line)->pars_token = NULL;
-		ft_putstr_fd("minishell: : command not found\n", 2);
-		(*line)->exit_status = 127;
-		return (0);
+		ft_putstr_fd("minishell: command not found\n", 2);
+		return ((*line)->pars_token = NULL, (*line)->exit_status = 127, 0);
 	}
 	return (1);
 }
@@ -142,8 +155,6 @@ int	ft_protect_expand(t_data **line)
 		}
 		else
 		{
-			// if (token && (token->type == CMD || token->type == BUILTIN) && ft_quotes_existe(token->content))
-			// 	status = true;
 			token = ft_handle_expansion(line, token, befor, NULL);
 			if (!token)
 				return (0);

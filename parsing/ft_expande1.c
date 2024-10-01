@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:54:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/30 18:59:14 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/01 14:20:52 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,9 @@ static char	*ft_expande_process(char *read, int *status, t_data **line)
 char	*ft_convert_not_expandebel(char *read)
 {
 	read = ft_convert_negatives(read);
-	read = ft_code_double_quotes(read);
-	read = ft_code_singel_quotes(read);
+	// read = ft_code_double_quotes(read);
+	// read = ft_code_singel_quotes(read);
+	read = ft_goat(read);
 	return (read);
 }
 

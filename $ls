@@ -1,0 +1,12 @@
+$ls
+Errors.txt
+Makefile
+a
+include
+libft
+main.c
+main.o
+minishell
+my_tests.txt
+parsing
+src

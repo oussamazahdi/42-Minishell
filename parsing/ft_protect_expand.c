@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/01 12:21:20 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/01 14:22:51 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,36 @@ static int	ft_sp(char *read)
 	return (free(ptr), ptr = NULL, 0);
 }
 
+// char	*ft_goat(char *read)
+// {
+// 	int		i;
+// 	char	c;
+
+// 	i = 0;
+// 	printf("read = %s\n", read);
+// 	if (!read)
+// 		return (NULL);
+// 	while (read[i])
+// 	{
+// 		if (read[i] == 34 || read[i] == 39)
+// 		{
+// 			c = read[i];
+// 			i++;
+// 			while (read[i] && read[i] != c)
+// 			{
+// 				if (read[i] > 0 && read[i] != c)
+// 					read[i] *= -1;
+// 				i++;
+// 			}
+// 			if (read[i] && read[i] == c)
+// 				i++;
+// 		}
+// 		else
+// 			i++;
+// 	}
+// 	printf("read = %s\n", read);
+// 	return (read);
+// }
 char	*ft_goat(char *read)
 {
 	int		i;

@@ -254,5 +254,6 @@ char	*ft_code_singel_quotes(char *read);
 char	*ft_change_and_join_quotes(char *read);
 void	ft_builtings(t_data **line);
 char	*chefer_v2(char *read);
+char	*ft_goat(char *read);
 
 #endif

@@ -63,7 +63,7 @@ exit
 ➜ Minishell $ export
 declare -x a="=adnanadnanadnan"
 ----------------------------------------------------------------------------------------
-➜ Minishell $ echo $PWD "||||" $OLDPWD
+➜ Minishell $ echo $PWD "||||" $OLDPWD                         ********* solved
 /Users/ozahdi/Desktop/minishell2: is a directory
 ➜ Minishell $ 
 ----------------------------------------------------------------------------------------
@@ -95,13 +95,64 @@ bash: /ls: No such file or directory
 bash-3.2$ echo $?
 127
 ----------------------------------------------------------------------------------------
-➜ Minishell $ $_
+➜ Minishell $ $_                            ********* solved
 minishell: : command not found
 
 ➜ Minishell $ $asd
 minishell: : command not found
 ----------------------------------------------------------------------------------------
 
+➜ Minishell $ cat $ls
+cat: : No such file or directory
+
 ----------------------------------------------------------------------------------------
+➜ Minishell $ ls | ls
+Errors.txt      a               libft           main.o          my_tests.txt    src
+Makefile        include         main.c          minishell       parsing
+➜ Minishell $ ls > '$ls'
+➜ Minishell $ cat $ls                   --------------------- remove empty srtrings no-quotes
+cat: : No such file or directory
+➜ Minishell $ cat '$ls'
+$ls
+Errors.txt
+Makefile
+a
+include
+libft
+main.c
+main.o
+minishell
+my_tests.txt
+parsing
+src
+➜ Minishell $ echo $ls
+
+➜ Minishell $ echo '$ls'
+$ls
+➜ Minishell $ echo '$ls"'
+$ls"
+➜ Minishell $ echo '$ls$"'
+$ls$"
+➜ Minishell $ echo '$ls$"'"$'"
+$ls$"'"$
+➜ Minishell $ echo "$'"
+$'
+➜ Minishell $ echo ''"$'"
+$'
+➜ Minishell $ echo '"'"$'"
+"'"$
+➜ Minishell $ echo '"'"'"
+'
+➜ Minishell $ echo '"'"$'"
+"'"$
+➜ Minishell $ 
+----------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------
+
 
 

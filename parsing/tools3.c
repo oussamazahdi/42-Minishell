@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:51:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/29 10:44:57 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/30 18:58:09 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,27 @@
 static char	*ft_rebuild2(char *read, int *i)
 {
 	char	c;
+	int 	j;
 
-	(*i) += 2;
-	while (read[*i] == ' ')
-		i++;
-	while (read[*i] && read[*i] != ' ' && read[*i] != '<')
+	j = *i + 2;
+	while (read && read[j] && read[j] == ' ')
+		j++;
+	while (read[j] && read[j] != ' ' && read[j] != '<')
 	{
-		if (read[*i] == '"' || read[*i] == 39)
+		if (read[j] && (read[j] == '"' || read[j] == 39))
 		{
-			c = read[*i];
-			if (read[*i])
-				i++;
-			while (read[*i] && read[*i] != c)
-				read[(*i)++] *= -1;
+			c = read[j];
+			if (read[j])
+				j++;
+			while (read[j] && read[j] != c)
+				read[j++] *= -1;
 		}
 		else
-			read[*i] *= -1;
-		if (read[*i])
-			i++;
+			read[j] *= -1;
+		if (read[j])
+			j++;
 	}
+	*i = j;
 	return (read);
 }
 
@@ -45,15 +47,15 @@ char	*ft_rebuild(char *read)
 	i = 0;
 	while (read[i])
 	{
-		if (read[i] == '<' && read[i + 1] == '<')
+		if (read [i] && read[i] == '<' && read[i + 1] && read[i + 1] == '<')
 			read = ft_rebuild2(read, &i);
-		else if (read[i] == '"')
+		else if (read [i] && read[i] == '"')
 		{
 			i++;
 			while (read[i] && read[i] != '"')
 				i++;
 		}
-		else if (read[i] == 39)
+		else if (read [i] && read[i] == 39)
 			while (read[++i] && read[i] != 39)
 				read[i] *= -1;
 		if (read[i] && (read[i] != '<' || (read[i] == '<' && \

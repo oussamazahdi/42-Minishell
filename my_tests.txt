@@ -216,3 +216,40 @@ zahdi
 minishell: syntax error near unexpected token `newline'
 ➜ Minishell $ echo $?
 258
+➜ Minishell $ ls -la | << ''
+> 
+➜ Minishell $ ls -la | << '' | << '' cat | wc -l
+> oussama
+> 
+> oussama
+> zahdi
+> 1337
+> khouribga
+> good
+> luck
+> new
+> BMW
+> M3 COMP
+> 
+       9
+➜ Minishell $ << '' cat > a
+> oussama
+> zahdi
+> 1337
+> BMW
+> M3 COMP
+> 
+➜ Minishell $ cat a
+oussama
+zahdi
+1337
+BMW
+M3 COMP
+➜ Minishell $ << $"USER" cat
+> oussama
+> zahdi
+> $USER
+> USER
+oussama
+zahdi
+$USER

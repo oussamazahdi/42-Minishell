@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:23:59 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/29 10:45:35 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/30 18:58:47 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,13 @@ int	ft_write_infd(t_data **line, int fd, char *file)
 
 	status = 1;
 	ptr = NULL;
+	check = 0;
 	check = ft_check_herdoc_expanding(file);
 	file = ft_prepare_file_content(file);
 	res = ft_fill_res(ptr, file, fd, &status);
 	if (!status)
 		return (0);
-	if (!check)
+	if (check == 0)
 		res = ft_normal_expand(ft_expande(line, res), line);
 	if (res)
 	{

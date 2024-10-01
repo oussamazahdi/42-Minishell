@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/29 16:14:25 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/30 19:15:33 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,9 @@ int	ft_protect_expand(t_data **line)
 {
 	t_token		*token;
 	t_token		*befor;
+	bool		status;
 
+	status = false;
 	token = (*line)->pars_token;
 	befor = (*line)->pars_token;
 	while (token)
@@ -140,6 +142,8 @@ int	ft_protect_expand(t_data **line)
 		}
 		else
 		{
+			// if (token && (token->type == CMD || token->type == BUILTIN) && ft_quotes_existe(token->content))
+			// 	status = true;
 			token = ft_handle_expansion(line, token, befor, NULL);
 			if (!token)
 				return (0);

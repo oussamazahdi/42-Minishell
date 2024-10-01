@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_cd_with_args.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hel-band <hel-band@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:57:15 by hel-band          #+#    #+#             */
-/*   Updated: 2024/09/29 12:05:59 by hel-band         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:54:07 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,9 @@ void	handle_cd_directory(t_data *data, char *arg)
 	char	cwd[1024];
 	char	*dir;
 	char	*error_message;
-	printf("++++++++++\n");
 	navigate_to_directory(data, arg);
-	printf("++++++++++1\n");
-	if (data->exit_status == 1)
-		return ;
+	// if (data->exit_status == 1)
+	// 	return ;
 	dir = getcwd(cwd, sizeof(cwd));
 	if (!dir)
 	{
@@ -115,6 +113,5 @@ void	handle_cd_directory(t_data *data, char *arg)
 		data->exit_status = 1;
 		return ;
 	}
-	printf("++++++++++2\n");
 	retrieve_and_update_env(data, dir);
 }

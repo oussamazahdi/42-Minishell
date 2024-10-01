@@ -1,0 +1,107 @@
+----------------------------------------------------------------------------------------
+➜ Minishell $ cd ..
+➜ Minishell $ cd ..
+➜ Minishell $ cd
+➜ Minishell $ cd -
+cd: OLDPWD not set
+
+bash-3.2$ cd ..
+bash-3.2$ cd ..
+bash-3.2$ cd
+bash-3.2$ cd -
+/Users/ozahdi
+----------------------------------------------------------------------------------------
+➜ Minishell $ pwd                                      ************* leaks in cd -
+/Users/ozahdi/Desktop/minishell2
+➜ Minishell $ cd ..
+➜ Minishell $ cd ..
+➜ Minishell $ cd
+➜ Minishell $ cd -
+cd: OLDPWD not set
+➜ Minishell $ cd Desktop/
+➜ Minishell $ cd minishell2
+➜ Minishell $ cd -
+/Users/ozahdi/Desktop
+➜ Minishell $ pwd
+/Users/ozahdi/Desktop
+➜ Minishell $ cd minishell2
+➜ Minishell $ pwd
+/Users/ozahdi/Desktop/minishell2
+➜ Minishell $ cd -
+/Users/ozahdi/Desktop
+----------------------------------------------------------------------------------------
+➜ Minishell $   << pp | << p | <<p | << p                  ********* solved
+> ^D
+>  << pp | << p | <<p | << p
+> ^D
+[1]    20454 segmentation fault  ./minishell
+
+----------------------------------------------------------------------------------------
+
+bash-3.2$ exit -      && +
+exit
+bash: exit: -: numeric argument required
+➜  minishell2 git:(master) ✗ echo $?
+255
+
+=======
+
+ Minishell $ exit -
+exit
+➜ Minishell $ echo $?
+0
+----------------------------------------------------------------------------------------
+➜ Minishell $ sdjagf
+sdjagf: command not found
+➜ Minishell $ exit
+exit
+➜ Minishell $ echo $?
+0        ====>    127
+➜ Minishell $ 
+----------------------------------------------------------------------------------------
+➜ Minishell $ export a+==adnan
+➜ Minishell $ export
+declare -x a="=adnanadnanadnan"
+----------------------------------------------------------------------------------------
+➜ Minishell $ echo $PWD "||||" $OLDPWD
+/Users/ozahdi/Desktop/minishell2: is a directory
+➜ Minishell $ 
+----------------------------------------------------------------------------------------
+
+➜ Minishell $ > a
+➜ Minishell $ ./a
+./a: command not found
+➜ Minishell $ echo $?
+127
+
+========
+
+bash-3.2$ ./a
+bash: ./a: Permission denied
+bash-3.2$ echo $?
+126
+
+
+----------------------------------------------------------------------------------------
+➜ Minishell $ /ls
+Errors.txt      include         main.o          parsing
+Makefile        libft           minishell       src
+a               main.c          my_tests.txt
+➜ Minishell $ 
+
+===
+bash-3.2$ /ls
+bash: /ls: No such file or directory
+bash-3.2$ echo $?
+127
+----------------------------------------------------------------------------------------
+➜ Minishell $ $_
+minishell: : command not found
+
+➜ Minishell $ $asd
+minishell: : command not found
+----------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------
+
+

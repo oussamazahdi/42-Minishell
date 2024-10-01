@@ -6,28 +6,28 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:55:01 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/30 10:17:42 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/09/30 19:02:30 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
 
-// void ft_print_token2(t_list *token, int *lexer)
-// {
-// 	int x = 0;
-// 	int y = 0;
-// 	while (token)
-// 	{
-// 		printf("token->content = %s\n", token->content);
-// 		x++;
-// 		token = token->next;
-// 	}
-// 	while (y < x)
-// 	{
-// 		printf("lexer[%d] = %d\n", y, lexer[y]);
-// 		y++;
-// 	}
-// }
+void ft_print_token2(t_list *token, int *lexer)
+{
+	int x = 0;
+	int y = 0;
+	while (token)
+	{
+		printf("token->content = %s\n", token->content);
+		x++;
+		token = token->next;
+	}
+	while (y < x)
+	{
+		printf("lexer[%d] = %d\n", y, lexer[y]);
+		y++;
+	}
+}
 
 // void ft_print_token(t_token *token)
 // {
@@ -80,6 +80,7 @@ static void	ft_readline(t_data **line)
 			return ;
 		ft_fill_struct(line);
 		ft_lexer(line);
+		ft_print_token2((*line)->token, (*line)->lexer);
 		execute(line);
 		if (isatty(STDIN_FILENO) && tcsetattr(0, TCSANOW, &att))
 			perror("termios");

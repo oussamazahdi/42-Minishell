@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:57:15 by hel-band          #+#    #+#             */
-/*   Updated: 2024/09/30 14:54:07 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/01 18:07:55 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,16 @@ static void	navigate_to_directory(t_data *data, char *arg)
 static void	handle_failed_getcwd(t_data *data)
 {
 	t_list	*temp;
+	char	*str;
 
 	temp = data->env;
 	while (temp)
 	{
 		if (ft_strncmp("PWD=", (char *)temp->content, 4) == 0)
 		{
+			str = (char *)temp->content;
 			temp->content = ft_strjoin((char *)temp->content, "/..");
+			free(str);
 			break ;
 		}
 		temp = temp->next;
@@ -99,9 +102,10 @@ void	handle_cd_directory(t_data *data, char *arg)
 	char	cwd[1024];
 	char	*dir;
 	char	*error_message;
+
 	navigate_to_directory(data, arg);
-	// if (data->exit_status == 1)
-	// 	return ;
+	if (data->exit_status == 1)
+		return ;
 	dir = getcwd(cwd, sizeof(cwd));
 	if (!dir)
 	{
@@ -110,7 +114,7 @@ void	handle_cd_directory(t_data *data, char *arg)
 			"No such file or directory";
 		ft_putendl_fd(error_message, 2);
 		handle_failed_getcwd(data);
-		data->exit_status = 1;
+		data->exit_status = 0;
 		return ;
 	}
 	retrieve_and_update_env(data, dir);

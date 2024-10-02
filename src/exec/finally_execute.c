@@ -60,7 +60,7 @@ int	try_paths(t_exec *exec, char **path, char **env)
 	int		strlen;
 	char	*copy;
 
-	if (verify(access(exec->cmd[0], X_OK), exec->cmd[0], exec->cmd, env) == 0)
+	if (verify(access(exec->cmd[0], F_OK), exec->cmd[0], exec->cmd, env) == 0)
 		return (126);
 	i = -1;
 	if (path != NULL)

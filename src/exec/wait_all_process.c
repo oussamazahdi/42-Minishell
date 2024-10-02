@@ -25,13 +25,10 @@ static void	handle_process_status(t_data *data, int status)
 			data->exit_status = 130;
 		}
 	}
-	else if (WIFEXITED(status))
+	else if (WIFEXITED(status) && data->exit_status != 1)
 	{
-		if (data->exit_status != 1)
-			data->exit_status = WEXITSTATUS(status);
+		data->exit_status = WEXITSTATUS(status);
 	}
-	if (data->exit_status == 130)
-		write(1, "\n", 1);
 }
 
 void	wait_all_processes(t_data *data, pid_t *pids, int flag)
@@ -54,7 +51,9 @@ void	wait_all_processes(t_data *data, pid_t *pids, int flag)
 		}
 	}
 	if (data->exit_status == 131)
-		write(1, "Quit: 3\n", 8);
+		write (1, "Quit: 3\n", 8);
 	if (data->exit_status == 130)
+	{
 		write(1, "\n", 1);
+	}
 }

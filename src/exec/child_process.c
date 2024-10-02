@@ -22,11 +22,13 @@ void	child_process(t_data *data, t_list *token, int *lexer, pid_t *pids)
 	{
 		get_cmd_and_args(token, lexer, data);
 		deal_with_pipes(data);
-		// printf("************************************* 01\n");
 		if (fd[0] != -2 || fd[1] != -2)
 			redirect_files(fd[0], fd[1]);
 		if (data->has_builtin == 1 || data->has_cmd == 1)
+		{
+			data->exit_status = 0;
 			finally_execute(data, fd, pids);
+		}
 	}
 	else if (result == 2 || result == 4)
 		data->exit_status = 1;
@@ -34,9 +36,8 @@ void	child_process(t_data *data, t_list *token, int *lexer, pid_t *pids)
 		data->exit_status = 126;
 	close_files(fd[0], fd[1]);
 	free(pids);
-	int x = data->exit_status;
 	free_for_all(data);
-	exit(x);
+	exit(data->exit_status);
 }
 
 void	update_last_command(t_data *data, char *command)

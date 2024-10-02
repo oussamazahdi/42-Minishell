@@ -78,7 +78,7 @@ int	get_exit_code(char *arg, bool *error)
 	i = 0;
 	if (!arg)
 		return (2);
-	while (ft_isspace(arg[i]))
+	while (ft_isspace(arg[i]) || arg[i] == '-' || arg[i] == '+')
 		i++;
 	if (i != 0)
 	{
@@ -87,8 +87,6 @@ int	get_exit_code(char *arg, bool *error)
 	}
 	if (arg[i] == '\0')
 		*error = true;
-	if (arg[i] == '-' || arg[i] == '+')
-		i++;
 	if (!ft_isdigit(arg[i]))
 		*error = true;
 	while (arg[i])

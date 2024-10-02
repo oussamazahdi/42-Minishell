@@ -38,21 +38,30 @@ static void	handle_command_execution(t_data *data, int fd[], pid_t *pids)
 	char	**path;
 	int		result;
 
+	env = NULL;
+	path = NULL;
 	if (ft_strlen(data->exec->cmd[0]) == 0 && data->process_count == 1)
 		exit_with_error(data, pids, 127, 1);
 	else if (ft_strlen(data->exec->cmd[0]) == 0 && data->process_count > 1)
 		exit_with_error(data, pids, 0, 0);
+	if (ft_strchr(data->exec->cmd[0], '/')
+		&& access(data->exec->cmd[0], F_OK))
+	{
+		ft_printf_fd(2, "%s: No such file or directory\n", data->exec->cmd[0]);
+		free_cmd_not_found(path, env, data, pids);
+		exit(127);
+	}
 	env = turn_env_to_arr(data->env);
 	path = find_path(env);
 	result = try_paths(data->exec, path, env);
 	close_files(fd[0], fd[1]);
 	if (opendir(data->exec->cmd[0]))
 		ft_printf_fd(2, "%s: is a directory\n", data->exec->cmd[0]);
-	else if (ft_strchr(data->exec->cmd[0], '/')
-		&& access(data->exec->cmd[0], F_OK))
-		ft_printf_fd(2, "%s: No such file or directory\n", data->exec->cmd[0]);
 	else if (result == 127)
+	{
+		data->exit_status = 127;
 		ft_printf_fd(2, "%s: command not found\n", data->exec->cmd[0]);
+	}
 	else
 		ft_printf_fd(2, "%s: permission denied\n", data->exec->cmd[0]);
 	free_cmd_not_found(path, env, data, pids);

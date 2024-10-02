@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:24:53 by hel-band          #+#    #+#             */
-/*   Updated: 2024/09/20 11:04:56 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/01 18:31:19 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ static void	ft_print_free(t_data *data, pid_t *pids)
 
 void	exit_builtin(t_data *data, pid_t *pids, char **args)
 {
-	long	num;
+	// long	num;
 	int		exit_code;
 	bool	error;
 
 	if (!is_quiet_mode(data))
 		ft_putendl_fd("exit", 2);
-	num = data->exit_status;
+	exit_code = data->exit_status;
+	printf("exit status: %d\n", exit_code);
 	error = false;
 	if (!args || !args[1])
 		exit_code = 0;

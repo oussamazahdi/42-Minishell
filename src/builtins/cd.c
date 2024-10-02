@@ -39,6 +39,7 @@ void	handle_cd_home(t_data *data)
 {
 	t_list	*temp;
 	char	*old;
+	char	*str;
 
 	temp = data->env;
 	old = get_env_var_value(data->env, "PWD");
@@ -51,10 +52,11 @@ void	handle_cd_home(t_data *data)
 				free(temp->content);
 				temp->content = ft_strjoin("PWD=", data->home);
 			}
-			else if (ft_strncmp("OLDPWD", (char *)temp->content, 6) == 0)
+			else if (old && ft_strncmp("OLDPWD", (char *)temp->content, 6) == 0)
 			{
-				free(temp->content);
+				str = temp->content;
 				temp->content = ft_strjoin("OLDPWD=", old);
+				free (str);
 			}
 			temp = temp->next;
 		}

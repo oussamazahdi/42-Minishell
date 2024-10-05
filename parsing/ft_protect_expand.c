@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/02 18:13:04 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/05 12:24:43 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static int	ft_sp(char *read)
 	char	*ptr;
 
 	i = 0;
+	// printf("ptr bfr : [%s]\n", ft_convert_negatives(read));
 	ptr = ft_strtrim(ft_convert_negatives(read), " \t");
+	// printf("ptr aft : [%s]\n", ptr);
+	// printf("ptr aft : [%s]\n", ft_convert_negatives(read));
 	while (ptr && ptr[i] && (ptr[i] == ' ' || ptr[i] == '\t'))
 		i++;
 	if (i == ft_strlen(ptr))
@@ -89,6 +92,7 @@ static t_token	*ft_handle_expansion(t_data **line, \
 	}
 	else
 		token->content = ft_remove_quots(ft_convert_negatives(token->content));
+	printf("cont : [%s]\n", token->content);
 	return (token);
 }
 
@@ -119,6 +123,5 @@ int	ft_protect_expand(t_data **line, t_token *token, t_token *befor)
 		if (token)
 			token = token->next;
 	}
-	// ft_print_token((*line)->pars_token);
 	return (ft_clear_empty_nodes(&(*line)->pars_token, NULL));
 }

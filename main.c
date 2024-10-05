@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:55:01 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/04 19:12:49 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/05 12:02:08 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,48 @@ static void	ft_readline(t_data **line)
 			return ;
 		ft_fill_struct(line);
 		ft_lexer(line);
-		// printf("exit status pars : [%d]\n", (*line)->exit_status);
-		// ft_print_token((*line)->pars_token);
-		// printf("-----------------------------------------\n");
 		execute(line);
 		if (isatty(STDIN_FILENO) && tcsetattr(0, TCSANOW, &att))
 			perror("termios");
 	}
 	ft_free_all(line);
 }
+
+int	main(int ac, char **av, char **env)
+{
+	t_data		*line;
+
+	if (!isatty(STDIN_FILENO))
+		exit (1);
+	if (ac != 1)
+		return (printf("minishell: %s: No such file or directory\n", \
+			av[1]), 127);
+	line = malloc(sizeof(t_data));
+	if (!line)
+		exit (1);
+	ft_init_struct(&line);
+	copy_env(&line->env, env, line);
+	rl_catch_signals = 0;
+	while (1)
+	{
+		ft_add_enver(line);
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, handle_sigint);
+		ft_readline(&line);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 //  int g_xs = 0;
 // static void	ft_readline_test(t_data **line, char **av, int ac)
@@ -127,34 +160,30 @@ static void	ft_readline(t_data **line)
 // }
 
 
+// int	main(int ac, char **av, char **env)
+// {
+// 	t_data		*line;
 
-
-/*chaech echo "$ " probebly removing space in expande
-*/
-int	main(int ac, char **av, char **env)
-{
-	t_data		*line;
-
-	if (!isatty(STDIN_FILENO))
-		exit (1);
-	(void)ac;
-	if (ac != 1)
-		return (printf("minishell: %s: No such file or directory\n", \
-			av[1]), 127);
-	line = malloc(sizeof(t_data));
-	if (!line)
-		exit (1);
-	ft_init_struct(&line);
-	copy_env(&line->env, env, line);
-	rl_catch_signals = 0;
-	while (1)
-	{
-		ft_add_enver(line);
-		signal(SIGQUIT, SIG_IGN);
-		signal(SIGINT, handle_sigint);
-		ft_readline(&line);
-		// ft_readline_test(&line, av, ac);
-		// if (g_xs == 1)
-		// 	break ;
-	}
-}
+// 	if (!isatty(STDIN_FILENO))
+// 		exit (1);
+// 	(void)ac;
+// 	// if (ac != 1)
+// 	// 	return (printf("minishell: %s: No such file or directory\n", \
+// 	// 		av[1]), 127);
+// 	line = malloc(sizeof(t_data));
+// 	if (!line)
+// 		exit (1);
+// 	ft_init_struct(&line);
+// 	copy_env(&line->env, env, line);
+// 	rl_catch_signals = 0;
+// 	while (1)
+// 	{
+// 		ft_add_enver(line);
+// 		signal(SIGQUIT, SIG_IGN);
+// 		signal(SIGINT, handle_sigint);
+// 		// ft_readline(&line);
+// 		ft_readline_test(&line, av, ac);
+// 		if (g_xs == 1)
+// 			break ;
+// 	}
+// }

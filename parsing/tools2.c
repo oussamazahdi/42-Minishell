@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:17:41 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/04 18:22:41 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/05 12:29:16 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,14 @@ int	ft_check_args_spliting(char *read)
 	while (read[i])
 	{
 		if (read[i] == ' ' || read[i] == '\t')
-			return (1);
+		{
+			while (read[i] && (read[i] == ' ' || read[i] == '\t'))
+				i++;
+			if (read[i] && read[i] != ' ' && read[i] != '\t' && read[i] != '\n')
+				return (1);
+			else if (!read[i])
+				return (0);
+		}
 		i++;
 	}
 	return (0);

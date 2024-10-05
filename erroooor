@@ -194,3 +194,12 @@ export: '=============123': not a valid identifier
 0
 ➜ Minishell $ 
 
+
+
+
+
+➜ Minishell $ export "a      "=""
+➜ Minishell $ export
+declare -x a      =""
+➜ Minishell $ 
+

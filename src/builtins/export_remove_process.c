@@ -97,7 +97,9 @@ int	find_in_env(t_data *data, char *var)
 	temp = data->env;
 	if (check_key(var, data) == 0)
 	{
-		ft_printf_fd(2, "export: '%s': not a valid identifier\n", var);
+		// ft_putstr_fd("minishell: export: `==========': not a valid identifier", 2);
+		ft_printf_fd(2, "minishell: export: `%s': not a valid identifier\n", \
+		var);
 		data->exit_status = 1;
 		return (2);
 	}

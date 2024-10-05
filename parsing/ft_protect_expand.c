@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/05 12:24:43 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/05 12:35:00 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static t_token	*ft_handle_expansion(t_data **line, \
 	}
 	else
 		token->content = ft_remove_quots(ft_convert_negatives(token->content));
-	printf("cont : [%s]\n", token->content);
+	// printf("cont : [%s]\n", token->content);
 	return (token);
 }
 

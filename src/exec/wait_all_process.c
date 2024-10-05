@@ -25,7 +25,7 @@ static void	handle_process_status(t_data *data, int status)
 			data->exit_status = 130;
 		}
 	}
-	else if (WIFEXITED(status) && data->exit_status != 1)
+	else if (WIFEXITED(status) && data->exit_status != 1) /*problem in exit code her : echo hi >./outfiles/outfile01 | echo bye */
 	{
 		data->exit_status = WEXITSTATUS(status);
 	}
@@ -50,6 +50,7 @@ void	wait_all_processes(t_data *data, pid_t *pids, int flag)
 			handle_process_status(data, status);
 		}
 	}
+	printf("exit aft : [%d]\n", data->exit_status);
 	if (data->exit_status == 131)
 		write (1, "Quit: 3\n", 8);
 	if (data->exit_status == 130)

@@ -2,11 +2,11 @@
 
 TEST_ARRAY=(
 '##################		    BUILTINS			#################'
-#### PWD ####
+'#### PWD ####'
 'pwd'
 'pwd "useless argument"'
 'unset PWD | pwd'
-#### ECHO ####
+'#### ECHO ####'
 'echo -n test1'
 'echo -n "test1 test2"'
 'echo -n "test1 test2" test3'

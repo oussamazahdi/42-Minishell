@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:55:01 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/05 12:02:08 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/05 14:50:08 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,6 @@ int	main(int ac, char **av, char **env)
 // 		// ft_readline(&line);
 // 		ft_readline_test(&line, av, ac);
 // 		if (g_xs == 1)
-// 			break ;
+// 			exit (line->exit_status);
 // 	}
 // }

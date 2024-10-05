@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_cd_with_args.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hel-band <hel-band@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:57:15 by hel-band          #+#    #+#             */
-/*   Updated: 2024/10/04 17:16:06 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/04 18:26:27 by hel-band         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,26 @@ static void	update_pwd_and_oldpwd(t_data *data, char *dir, char *old)
 		temp = temp->next;
 	}
 	if (flag == 0)
-	{
 		data->exit_status = 1;
-	}
 }
 
 static void	retrieve_and_update_env(t_data *data, char *dir)
 {
 	char	cwd[1024];
 	char	*old;
-
+	char	*tmp;
+	
+	tmp = NULL;
 	old = get_env_var_value(data->env, "PWD");
 	if (!old)
 	{
-		data->exit_status = 1;
-		return ;
+		if ((tmp = getcwd(cwd, sizeof(cwd))) == NULL)
+		{
+			data->exit_status = 1;
+			return ;
+		}
+		tmp = ft_strjoin("PWD=", tmp);
+		ft_lstadd_back(&data->env, ft_lstnew_index(ft_strdup(tmp), 2));
 	}
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
@@ -60,6 +65,8 @@ static void	retrieve_and_update_env(t_data *data, char *dir)
 	}
 	update_pwd_and_oldpwd(data, dir, old);
 	data->exit_status = 0;
+	free (tmp);
+	tmp = NULL;
 }
 
 static void	navigate_to_directory(t_data *data, char *arg)

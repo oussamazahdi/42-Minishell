@@ -16,7 +16,7 @@ static void	print_export2(t_list *export);
 static void	print_export_entry(char *content);
 static int	print_export3(t_list *export);
 
-int	check_key(char *var)
+int	check_key(char *var, t_data *data)
 {
 	int	i;
 	int	plus;
@@ -24,15 +24,18 @@ int	check_key(char *var)
 	i = 0;
 	plus = 0;
 	if (ft_isalpha(var[i]) == 0 && var[i] != '_')
+	{
+		data->exit_status = 1;
 		return (0);
+	}
 	i = 1;
 	while (var[i] && var[i] != '=')
 	{
 		if (var[i] == '-')
-			return (0);
+			return (data->exit_status = 1, 0);
 		if (ft_isalnum(var[i]) == 0 && var[i] != '_'
 			&& (var[i] == '+' && var[i + 1] != '='))
-			return (0);
+			return (data->exit_status = 1, 0);
 		i++;
 	}
 	return (1);

@@ -80,7 +80,6 @@ void	execute(t_data **data)
 	pipe(args.pipis);
 	pipe(args.pipes);
 	commands_fork(&args, *data);
-	// printf("exit status : [%d]\n", (*data)->exit_status);
 	unlink("/tmp/herdoc.txt");
 	close_pipes(&args);
 }

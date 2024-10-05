@@ -38,12 +38,12 @@ void	export_builtin(t_data *data, char **args)
 	int		i;
 
 	export = NULL;
+	i = 0;
 	len = ft_arrsize(args);
 	if (len == 1)
 		sort_env(copy_env_list(data->env, export));
 	else
 	{
-		i = 0;
 		while (++i < len)
 		{
 			if (find_in_env(data, args[i]) == 0)
@@ -53,13 +53,9 @@ void	export_builtin(t_data *data, char **args)
 				ft_lstadd_back(&data->env,
 					ft_lstnew_index(ft_strdup(args[i]), 1));
 			}
+			else
+				return ;
 		}
 	}
-	if (data->exit_status == 1)
-		return;
-	// if (data->exit_status != 0)
-	// {
-	// 	data->exit_status = 1;
-	// }
-	data->exit_status = 0;
+		data->exit_status = 0;
 }

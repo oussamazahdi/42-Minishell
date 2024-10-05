@@ -42,9 +42,7 @@ static void	execute_builtin_parent_process(t_data *data)
 		get_cmd_and_args(data->token, data->lexer, data);
 		if (fd[0] != -2 || fd[1] != -2)
 			redirect_files(fd[0], fd[1]);
-		// printf("exit status before : [%d]\n", data->exit_status);
 		execute_builtin(data, data->exec, NULL);
-		// printf("exit status after : [%d]\n", data->exit_status);
 		free_exec(data->exec);
 	}
 	else if (result == 2 || result == 4)
@@ -69,7 +67,7 @@ static int	handle_process(t_data *data, t_list *temp, int *i, pid_t *pids)
 		return (1);
 	}
 	pids[data->args->index] = pid;
-		child_proc_utils(data, temp, &data->lexer[*i], pids);
+	child_proc_utils(data, temp, &data->lexer[*i], pids);
 	return (0);
 }
 

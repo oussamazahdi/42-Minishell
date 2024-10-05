@@ -78,5 +78,6 @@ int	env_builtin(t_data *data, char **args)
 			ft_putendl_fd(temp->content, STDOUT_FILENO);
 		temp = temp->next;
 	}
+	data->exit_status = 0;
 	return (EXIT_SUCCESS);
 }

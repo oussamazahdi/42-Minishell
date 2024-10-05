@@ -27,7 +27,7 @@ void	unset_builtin(t_data *data, char **args)
 		{
 			printf("minishell: unset: `%s': not a valid identifier\n", args[i]);
 			data->exit_status = 1;
-			return ; /*check this*/
+			return ;
 		}
 		else
 		{
@@ -39,7 +39,6 @@ void	unset_builtin(t_data *data, char **args)
 		free_list(data->env);
 		data->env = NULL;
 	}
-	// if (data->exit_status != 1)
 		data->exit_status = 0;
 }
 

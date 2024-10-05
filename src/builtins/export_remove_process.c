@@ -95,7 +95,7 @@ int	find_in_env(t_data *data, char *var)
 
 	data->var = var;
 	temp = data->env;
-	if (check_key(var) == 0)
+	if (check_key(var, data) == 0)
 	{
 		ft_printf_fd(2, "export: '%s': not a valid identifier\n", var);
 		data->exit_status = 1;

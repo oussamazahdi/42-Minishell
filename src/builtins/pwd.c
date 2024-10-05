@@ -35,6 +35,6 @@ int	pwd_builtin(t_data *data)
 		return (EXIT_FAILURE);
 	}
 	printf("%s\n", dir);
-		data->exit_status = EXIT_SUCCESS;
+	data->exit_status = EXIT_SUCCESS;
 	return (EXIT_SUCCESS);
 }

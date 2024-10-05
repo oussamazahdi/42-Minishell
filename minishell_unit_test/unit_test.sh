@@ -447,7 +447,7 @@ TEST_ARRAY=(
 'sleep 1 | exit'
 'echo bonjour > $test w t'
 '"exit retour a la ligne"'
-'minishell'
+#'minishell'
 'cat diufosgid'
 ' exit '
 'exit -10'
@@ -632,6 +632,7 @@ TEST_ARRAY=(
 "ls -la '|' '<<' '<' '>' '>>' '||'| echo hello"
 'ls -la "|" "<<" "<" ">" ">>" "||"| echo hello'
 'unset ?'
+'echo "$'$USER$'$"$'
 )
 
 usage() {

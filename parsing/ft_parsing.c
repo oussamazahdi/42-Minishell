@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:28:57 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/04 18:52:24 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/05 17:45:03 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	ft_standar_syntax(char *read)
 		!ft_strcomp(tmp, "&&") || !ft_strcomp(tmp, "& &") || \
 		!ft_strcomp(tmp, "(") || !ft_strcomp(tmp, "()") || \
 		!ft_strcomp(tmp, "; |") || !ft_strcomp(tmp, ";|") || \
-		!ft_strcomp(tmp, "> <") || !ft_strcomp(tmp, "( )"))
+		!ft_strcomp(tmp, "> <") || !ft_strcomp(tmp, "( )") || \
+		!ft_strcomp(tmp, "><"))
 	{
 		free(tmp);
 		return (0);
@@ -71,7 +72,7 @@ static int	ft_check_syntax(t_data **line, char *read)
 	if (read && read[ft_strlen(read) - 1] == '<' && \
 		read[ft_strlen(read) - 2] == '<' && ft_strlen(read) == 2)
 	{
-		printf("minishell : syntax error near unexpected token\n");
+		ft_putstr_fd("minishell: syntax error near unexpected token\n", 2);
 		(*line)->exit_status = 258;
 		free(read);
 		return (0);
@@ -110,6 +111,7 @@ int	ft_parsing(t_data **line, char *read)
 	if (!read || !ft_strlen(read) || !check_spaces(read) || \
 		!ft_check_syntax(line, read) || !check_quotes(line, ft_chifr(read)))
 		{
+			
 			return (0);
 		}
 	return (1);

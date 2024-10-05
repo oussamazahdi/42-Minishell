@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:34:27 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/27 18:29:56 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/05 16:19:23 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	ft_fill_struct(t_data **line)
 	(*line)->last_command = ft_last_command(line);
 	while (src)
 	{
+		// printf("stc->content : [%s] [%d]\n", src->content, src->type);
 		tmp = ft_lstadd_back_token(&tmp, src->content);
 		src = src->next;
 	}

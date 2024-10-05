@@ -264,6 +264,6 @@ int		ft_clear_empty_nodes(t_token **token, t_token *prev);
 int		ft_quotes_flag(char *read);
 
 
-// void ft_print_token(t_token *token);
+void ft_print_token(t_token *token);
 
 #endif

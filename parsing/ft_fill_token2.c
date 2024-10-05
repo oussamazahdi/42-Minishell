@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:20:23 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/02 14:58:10 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/05 17:09:38 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ static void	ft_herdoc_append(t_data **line)
 	while (tmp)
 	{
 		if (tmp->content && tmp->content[0] == '>' && \
-			ft_strlen(tmp->content) == 2 && tmp->next->content)
+			ft_strlen(tmp->content) == 2 && tmp->next->content && tmp->flag == false)
 		{
 			tmp->type = APPEND;
 			tmp = tmp->next;
 			tmp->type = APPEND;
 		}
 		if (tmp->content && tmp->content[0] == '<' && \
-			ft_strlen(tmp->content) == 2)
+			ft_strlen(tmp->content) == 2 && tmp->flag == false)
 		{
 			tmp->type = HEREDOC;
 			if (tmp && tmp->next)
@@ -61,21 +61,21 @@ static void	ft_in_out_pipe(t_data **line)
 	while (tmp)
 	{
 		if (tmp->content && tmp->content[0] == '<' && \
-			ft_strlen(tmp->content) == 1 && tmp->next)
+			ft_strlen(tmp->content) == 1 && tmp->next && tmp->flag == false)
 		{
 			tmp->type = INFILE;
 			tmp = tmp->next;
 			tmp->type = INFILE;
 		}
 		else if (tmp->content && tmp->content[0] == '>' && \
-			ft_strlen(tmp->content) == 1 && tmp->next)
+			ft_strlen(tmp->content) == 1 && tmp->next && tmp->flag == false)
 		{
 			tmp->type = OUTFILE;
 			tmp = tmp->next;
 			tmp->type = INFILE;
 		}
 		else if (tmp->content && tmp->content[0] == '|' && \
-			tmp->content[1] != '|')
+			tmp->content[1] != '|' && tmp->flag == false)
 			tmp->type = PIPE;
 		if (tmp)
 			tmp = tmp->next;

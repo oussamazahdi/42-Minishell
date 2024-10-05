@@ -50,7 +50,7 @@ void	wait_all_processes(t_data *data, pid_t *pids, int flag)
 			handle_process_status(data, status);
 		}
 	}
-	printf("exit aft : [%d]\n", data->exit_status);
+	// printf("exit aft : [%d]\n", data->exit_status);
 	if (data->exit_status == 131)
 		write (1, "Quit: 3\n", 8);
 	if (data->exit_status == 130)

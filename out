@@ -1,0 +1,14 @@
+Makefile
+a
+erroooor
+exit_code errors.txt
+include
+libft
+main.c
+main.o
+minishell
+minishell_unit_test
+out
+parsing
+src
+test.txt

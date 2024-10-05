@@ -18,8 +18,10 @@ static int	print_export3(t_list *export);
 
 int	check_key(char *var, t_data *data)
 {
+	// printf("var key : [%s]\n", var);
 	int	i;
 	int	plus;
+	// int len;
 
 	i = 0;
 	plus = 0;
@@ -33,9 +35,19 @@ int	check_key(char *var, t_data *data)
 	{
 		if (var[i] == '-')
 			return (data->exit_status = 1, 0);
-		if (ft_isalnum(var[i]) == 0 && var[i] != '_'
-			&& (var[i] == '+' && var[i + 1] != '='))
-			return (data->exit_status = 1, 0);
+		// if (ft_isalnum(var[i]) == 0 && var[i] != '_'
+		// 	&& (var[i] == '+' && var[i + 1] != '='))
+		// 	return (data->exit_status = 1, 0);
+		if ((ft_isalnum(var[i]) == 0 && var[i] != '_'))
+		{
+			if (var[i] == '+' && var[i + 1] == '=')
+				return (1);
+			else
+			{
+				// printf("read : [%c]\n", var[i]);
+				return (data->exit_status = 1, 0);
+			}
+		}
 		i++;
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:55:01 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/05 14:50:08 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/05 17:34:10 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void ft_print_token(t_token *token)
 {
 	while (token)
 	{
-		printf("\x1b[38;5;214mtoken->content[%d] [%d] = %s\x1b[0m\n",token->type, token->flag ,token->content);
-		// printf("\x1b[38;5;214mtoken->content[%d] [%s] = %s\x1b[0m\n",token->type, token->flag ? "True" : "False" ,token->content);
+		// printf("\x1b[38;5;214mtoken->content[%d] [%d] = %s\x1b[0m\n",token->type, token->flag ? "true" : fails ,token->content);
+		printf("\x1b[38;5;214mtoken->content[%d] [%s] = %s\x1b[0m\n",token->type, token->flag ? "True" : "False" ,token->content);
 		token = token->next;
 	}
 }
@@ -124,6 +124,10 @@ int	main(int ac, char **av, char **env)
 // 		if (!ft_parsing(line, new))
 // 		{
 // 			g_xs = 1;
+// 			// printf("exit_code : [%d]\n", (*line)->exit_status);
+// 			// printf("***************************************\n");
+// 			exit (258);
+// 			// printf("***************************************\n");
 // 			return;
 			
 // 		}

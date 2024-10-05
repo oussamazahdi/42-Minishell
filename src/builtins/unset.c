@@ -25,7 +25,8 @@ void	unset_builtin(t_data *data, char **args)
 	{
 		if (!ft_check(args[i]) || ft_strchr(args[i], '=') != NULL)
 		{
-			printf("minishell: unset: `%s': not a valid identifier\n", args[i]);
+			ft_putstr_fd("minishell: unset: not a valid identifier\n", 2);
+			// printf("minishell: unset: `%s': not a valid identifier\n", args[i]);
 			data->exit_status = 1;
 			return ;
 		}

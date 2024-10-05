@@ -1,0 +1,196 @@
+^C➜ Minishell $ cat | ls
+Makefile        include         libft           main.c          main.o          minishell  parsing         src
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////
+
+➜ Minishell $ export a=ttt | env | grep ttt 
+
+
+///////////////////////
+
+➜ Minishell $ ./t
+./t: permission denied
+➜ Minishell $ echo $?
+1
+
+////////////////////
+
+
+➜ Minishell $ chmod +x a
+➜ Minishell $ chmod -w a
+➜ Minishell $ ls > a | cat
+a: Permission denied
+➜ Minishell $ echo $?
+0
+
+➜ Minishell $ ls > a
+a: Permission denied
+➜ Minishell $ echo $?
+126
+➜ Minishell $ bash
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+bash-3.2$ ls > a
+bash: a: Permission denied
+bash-3.2$ echo $?
+1
+
+
+
+➜ Minishell $ cat < a
+a: Permission denied
+➜ Minishell $ echo $?
+126
+➜ Minishell $ bash
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+bash-3.2$ cat < a
+bash: a: Permission denied
+bash-3.2$ echo $?
+1
+
+➜ Minishell $ make clean
+➜ Minishell $ echo $?
+1
+➜ Minishell $ bash
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+bash-3.2$ make clean
+bash-3.2$ echo $?
+0
+
+
+➜ Minishell $ chmod 0 a
+➜ Minishell $ ls | < a
+a: Is a directory
+➜ Minishell $ echo $?
+1
+➜ Minishell $ bash
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+bash-3.2$ ls | < a
+bash: a: Permission denied
+bash-3.2$ echo $?
+1
+
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+bash-3.2$ ls > a | cat | < > | <<a | .
+bash: syntax error near unexpected token `>'
+bash-3.2$ echo $?
+258
+bash-3.2$ exit
+exit
+➜ Minishell $ ls
+Makefile        include         minishell       t
+a               libft           parsing         z.c
+erroooor        main.c          src             zzzz
+➜ Minishell $ ls > a
+a: Is a directory
+➜ Minishell $ echo $?
+1
+➜ Minishell $ bash
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+bash-3.2$ ls > a
+bash: a: Is a directory
+bash-3.2$ echo $?
+1
+bash-3.2$ exit
+exit
+➜ Minishell $ chmod +w a
+➜ Minishell $ chmod -r a
+➜ Minishell $ echo < a 
+a: Is a directory
+➜ Minishell $ echo $?
+1
+➜ Minishell $ 
+
+➜ Minishell $ echo < a 
+a: Is a directory
+➜ Minishell $ echo $?
+1
+➜ Minishell $ bash
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+bash-3.2$ echo < a
+bash: a: Permission denied
+bash-3.2$ echo $?
+1
+bash-3.2$ 
+
+
+0
+➜ Minishell $ cat|cat|whoami|   cat | << a
+> '$USER'
+> '$USER
+> ""$USER
+> ""
+> ''
+> <<
+> <<a
+> >>
+> >
+> |
+> ||
+> .
+> ..
+> "'"
+> """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""$USER
+> a
+a: Is a directory
+
+
+➜ Minishell $ bash
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+bash-3.2$ cat|cat|whoami|   cat | << a
+> """""""""""""""""""""""""""$USER
+> a
+
+
+bash-3.2$ 
+
+
+
+
+
+
+
+/bin/ls
+
+
+
+
+
+➜ Minishell $ export =============123
+export: '=============123': not a valid identifier
+➜ Minishell $ echo $?
+0
+➜ Minishell $ 
+

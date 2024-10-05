@@ -6,32 +6,21 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:55:01 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/01 11:44:11 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/04 19:12:49 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
 
-// void ft_print_token2(t_list *token, int *lexer)
-// {
-// 	int x = 0;
-// 	while (token)
-// 	{
-// 		printf("\x1b[38;5;214mtoken->content [%d] : [%s]\x1b[0m\n", lexer[x], token->content);
-// 		x++;
-// 		token = token->next;
-// 	}
-// }
-
-// void ft_print_token(t_token *token)
-// {
-// 	while (token)
-// 	{
-// 		printf("\x1b[38;5;214mtoken->content[%d] [%d] = %s\x1b[0m\n",token->type, token->flag ,token->content);
-// 		// printf("\x1b[38;5;214mtoken->content[%d] [%s] = %s\x1b[0m\n",token->type, token->flag ? "True" : "False" ,token->content);
-// 		token = token->next;
-// 	}
-// }
+void ft_print_token(t_token *token)
+{
+	while (token)
+	{
+		printf("\x1b[38;5;214mtoken->content[%d] [%d] = %s\x1b[0m\n",token->type, token->flag ,token->content);
+		// printf("\x1b[38;5;214mtoken->content[%d] [%s] = %s\x1b[0m\n",token->type, token->flag ? "True" : "False" ,token->content);
+		token = token->next;
+	}
+}
 
 static void	ft_init_struct(t_data **line)
 {
@@ -75,6 +64,9 @@ static void	ft_readline(t_data **line)
 			return ;
 		ft_fill_struct(line);
 		ft_lexer(line);
+		// printf("exit status pars : [%d]\n", (*line)->exit_status);
+		// ft_print_token((*line)->pars_token);
+		// printf("-----------------------------------------\n");
 		execute(line);
 		if (isatty(STDIN_FILENO) && tcsetattr(0, TCSANOW, &att))
 			perror("termios");
@@ -82,15 +74,73 @@ static void	ft_readline(t_data **line)
 	ft_free_all(line);
 }
 
+//  int g_xs = 0;
+// static void	ft_readline_test(t_data **line, char **av, int ac)
+// {
+// 	char			*read;
+// 	char			*new;
+// 	struct termios	att;
+
+// 	read = NULL;
+// 	term_attr(&att);
+// 	if (ac == 3)
+// 	{
+// 		new = ft_chifr(ft_strtrim(read, BLANK));
+// 		free(read);
+// 		new = ft_strdup(av[2]);
+// 		if (!ft_parsing(line, new))
+// 		{
+// 			g_xs = 1;
+// 			return;
+			
+// 		}
+// 		// {
+// 			if (!ft_fill_token(line, new))
+// 			{
+// 				g_xs = 1;
+// 				return ;
+// 			}
+// 			if (!herdoc(line))
+// 			{
+// 				g_xs = 1;	
+// 				return ;
+// 			}
+// 			ft_fill_struct(line);
+// 			ft_lexer(line);
+// 			// printf("exit status pars : [%d]\n", (*line)->exit_status);
+// 			// ft_print_token((*line)->pars_token);
+// 			// printf("-----------------------------------------\n");
+// 			execute(line);
+// 			if (isatty(STDIN_FILENO) && tcsetattr(0, TCSANOW, &att))
+// 				perror("termios");
+// 			g_xs = 1;
+// 			// if (!ft_exit(read, line))
+// 			// 	return ;
+// 		}
+// 	// }
+// 	// else
+// 	// {
+// 	// 	ft_free_all(line);
+// 	// 	g_xs = 1;
+// 	// 	return ;
+// 	// }
+// }
+
+
+
+
+/*chaech echo "$ " probebly removing space in expande
+*/
 int	main(int ac, char **av, char **env)
 {
 	t_data		*line;
 
 	if (!isatty(STDIN_FILENO))
 		exit (1);
+	(void)ac;
 	if (ac != 1)
-		return (1);
-	(void)av;
+		return (printf("minishell: %s: No such file or directory\n", \
+			av[1]), 127);
 	line = malloc(sizeof(t_data));
 	if (!line)
 		exit (1);
@@ -103,5 +153,8 @@ int	main(int ac, char **av, char **env)
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, handle_sigint);
 		ft_readline(&line);
+		// ft_readline_test(&line, av, ac);
+		// if (g_xs == 1)
+		// 	break ;
 	}
 }

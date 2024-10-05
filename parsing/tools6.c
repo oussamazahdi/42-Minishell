@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:44:26 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/29 10:48:31 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/02 15:40:30 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,18 @@ char	*chefer_v2(char *read)
 			i++;
 	}
 	return (read);
+}
+
+int	ft_quotes_flag(char *read)
+{
+	int		i;
+
+	i = 0;
+	while (read[i])
+	{
+		if (read[i] == 34 || read[i] == 39)
+			return (1);
+		i++;
+	}
+	return (0);
 }

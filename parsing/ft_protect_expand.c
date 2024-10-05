@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/02 11:16:03 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/02 18:13:04 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,6 @@ static int	ft_sp(char *read)
 	return (free(ptr), ptr = NULL, 0);
 }
 
-// char	*ft_goat(char *read)
-// {
-// 	int		i;
-// 	char	c;
-
-// 	i = 0;
-// 	printf("read = %s\n", read);
-// 	if (!read)
-// 		return (NULL);
-// 	while (read[i])
-// 	{
-// 		if (read[i] == 34 || read[i] == 39)
-// 		{
-// 			c = read[i];
-// 			i++;
-// 			while (read[i] && read[i] != c)
-// 			{
-// 				if (read[i] > 0 && read[i] != c)
-// 					read[i] *= -1;
-// 				i++;
-// 			}
-// 			if (read[i] && read[i] == c)
-// 				i++;
-// 		}
-// 		else
-// 			i++;
-// 	}
-// 	printf("read = %s\n", read);
-// 	return (read);
-// }
 char	*ft_goat(char *read)
 {
 	int		i;
@@ -122,98 +92,8 @@ static t_token	*ft_handle_expansion(t_data **line, \
 	return (token);
 }
 
-void	ft_free_node(t_token **token)
+int	ft_protect_expand(t_data **line, t_token *token, t_token *befor)
 {
-	if (token && *token && (*token)->content)
-		free((*token)->content);
-	(*token)->content = NULL;
-	if (token && *token)
-		free(*token);
-	*token = NULL;
-}
-
-// static int	ft_clean_empty_tokens(t_data **line)
-// {
-// 	t_token		*token;
-// 	bool		status;
-
-// 	if (!(*line)->pars_token)
-// 		return (0);
-// 	token = (*line)->pars_token;
-// 	while ((*line)->pars_token && ft_strlen((*line)->pars_token->content) == 0)
-// 	{
-// 		status = (*line)->pars_token->flag;
-// 		(*line)->pars_token = (*line)->pars_token->next;
-// 		if (!ft_strlen(token->content) && status == true)
-// 		{
-// 			ft_putstr_fd("minishell: command not found\n", 2);
-// 			ft_free_node(&token);
-// 			return (ft_free_all(line), (*line)->exit_status = 127, 0);
-// 		}
-// 		ft_free_node(&token);
-// 		token = (*line)->pars_token;
-// 	}
-// 	if (!(*line)->pars_token && status == true)
-// 	{
-// 		ft_putstr_fd("minishell: command not found\n", 2);
-// 		return ((*line)->pars_token = NULL, (*line)->exit_status = 127, 0);
-// 	}
-// 	return (1);
-// }
-
-void ft_clear_node(t_token **token)
-{
-	if ((*token) && (*token)->content)
-		free((*token)->content);
-	(*token)->content = NULL;
-	if (*token)
-		free(*token);
-	*token = NULL;
-}
-
-int ft_clear_empty_nodes(t_token **token)
-{
-	t_token *tmp;
-	t_token *prev;
-	t_token *ptr;
-
-	prev = NULL;
-	ptr = *token;
-	while (*token && (*token)->content && !ft_strlen((*token)->content) && (*token)->flag == false)
-	{
-		(*token) = (*token)->next;
-		ft_clear_node(&ptr);
-		ptr = *token;
-	}
-	if (!(*token))
-		return (0);
-	while (ptr)
-	{
-		tmp = ptr->next;
-		if(ptr && !ft_strlen(ptr->content) && ptr->flag == false)
-		{
-			ft_clear_node(&ptr);
-			if (prev)
-				prev->next = tmp;
-			ptr = tmp;
-		}
-		else
-		{
-			prev = ptr;
-			if (ptr)
-				ptr = ptr->next;
-		}
-	}
-	return (1);
-}
-
-int	ft_protect_expand(t_data **line)
-{
-	t_token		*token;
-	t_token		*befor;
-	bool		status;
-
-	status = false;
 	token = (*line)->pars_token;
 	befor = (*line)->pars_token;
 	while (token)
@@ -239,5 +119,6 @@ int	ft_protect_expand(t_data **line)
 		if (token)
 			token = token->next;
 	}
-	return (ft_clear_empty_nodes(&(*line)->pars_token), 1);
+	// ft_print_token((*line)->pars_token);
+	return (ft_clear_empty_nodes(&(*line)->pars_token, NULL));
 }

@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:20:23 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/01 11:51:14 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/02 14:58:10 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ static void	ft_in_out_pipe(t_data **line)
 			tmp->type = INFILE;
 		}
 		else if (tmp->content && tmp->content[0] == '>' && \
-			ft_strlen(tmp->content) == 1 && \
-			tmp->next)
+			ft_strlen(tmp->content) == 1 && tmp->next)
 		{
 			tmp->type = OUTFILE;
 			tmp = tmp->next;
 			tmp->type = INFILE;
 		}
-		else if (tmp->content && tmp->content[0] == '|' && tmp->content[1] != '|')
+		else if (tmp->content && tmp->content[0] == '|' && \
+			tmp->content[1] != '|')
 			tmp->type = PIPE;
 		if (tmp)
 			tmp = tmp->next;

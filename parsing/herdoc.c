@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:01:52 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/29 11:26:38 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/02 15:16:16 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,10 @@ int	herdoc(t_data **line)
 	(*line)->fd_heredoc = malloc(heredoc_size * sizeof(int));
 	i = ft_process_heredoc_tokens(line, token, direct);
 	if (i == 0 || i == 258)
-	{
-		ft_free_all(line);
-		return (0);
-	}
+		return (ft_free_all(line), 0);
 	free(direct);
 	if ((*line)->fd_heredoc)
 		free((*line)->fd_heredoc);
 	(*line)->fd_heredoc = NULL;
-	(*line)->exit_status = 0;
 	return (1);
 }

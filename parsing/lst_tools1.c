@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:17:50 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/01 11:30:36 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/02 15:40:45 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,19 +93,19 @@ t_token	*ft_lstadd_back_pars2(t_token *lst, char *ptr)
 	return (lst);
 }
 
-int	ft_quotes_flag(char *read)
-{
-	int		i;
+// int	ft_quotes_flag(char *read)
+// {
+// 	int		i;
 
-	i = 0;
-	while (read[i])
-	{
-		if (read[i] == 34 || read[i] == 39)
-			return (1);
-		i++;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	while (read[i])
+// 	{
+// 		if (read[i] == 34 || read[i] == 39)
+// 			return (1);
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 t_token	*ft_lstadd_back_pars(t_token *lst, char *ptr)
 {

@@ -29,7 +29,7 @@ static int	ft_isspace(int c)
 
 static bool	check_overflow(char *str, int sign)
 {
-	int	len;
+	int		len;
 
 	len = ft_strlen(str);
 	if (len > 19)
@@ -73,20 +73,21 @@ static long long	ft_atoi_long(char *str, bool *error)
 
 int	get_exit_code(char *arg, bool *error)
 {
-	unsigned long long	i;
+	unsigned long long		i;
 
 	i = 0;
 	if (!arg)
 		return (2);
-	while (ft_isspace(arg[i]) || arg[i] == '-' || arg[i] == '+')
+	while (ft_isspace(arg[i]) || (arg[i] == '+' && (arg[i + 1] == ' ' || \
+		arg[i + 1] == '\0')) || (arg[i] == '-' && (arg[i + 1] == ' ' || \
+		arg[i + 1] == '\0')))
 		i++;
 	if (i != 0)
-	{
-		*error = true;
-		return (2);
-	}
+		return (*error = true, 2);
 	if (arg[i] == '\0')
 		*error = true;
+	if (arg[i] == '-' || arg[i] == '+')
+		i++;
 	if (!ft_isdigit(arg[i]))
 		*error = true;
 	while (arg[i])

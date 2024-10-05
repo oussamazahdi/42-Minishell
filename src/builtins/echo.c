@@ -19,7 +19,7 @@ static bool	ft_nflag(char *arg)
 
 	n_flag = false;
 	i = 0;
-	if (arg[i] != '-')
+	if (arg[i] != '-' || (arg[i] == '-' && arg[i + 1] != 'n'))
 		return (n_flag);
 	i++;
 	while (arg[i] && arg[i] == 'n')
@@ -62,5 +62,6 @@ int	echo_builtin(t_data *data, char **args)
 		i++;
 	}
 	ft_print_echo(args, n_flag, i);
+	data->exit_status = 0;
 	return (EXIT_SUCCESS);
 }

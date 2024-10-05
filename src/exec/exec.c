@@ -12,27 +12,13 @@
 
 #include "../../include/minishell.h"
 
-static void	commands_fork(t_args *args, t_data *data);
-static void	execute_builtin_parent_process(t_data *data);
-static void	execute_child_process(t_data *data, t_args *args);
-static void	child_proc_utils(t_data *data, t_list *temp, int *lex, pid_t *pids);
+static	void	execute_builtin_parent_process(t_data *data);
+static	void	execute_child_process(t_data *data, t_args *args);
+static	void	child_proc_utils(t_data *data, t_list *temp,
+					int *lex, pid_t *pids);
+static	int	handle_process(t_data *data, t_list *temp, int *i, pid_t *pids);
 
-void	execute(t_data **data)
-{
-	t_args	args;
-
-	signal(SIGINT, ft_handler);
-	signal(SIGQUIT, ft_handler1);
-	(*data)->args = &args;
-	args.index = 0;
-	pipe(args.pipis);
-	pipe(args.pipes);
-	commands_fork(&args, *data);
-	unlink("/tmp/herdoc.txt");
-	close_pipes(&args);
-}
-
-static void	commands_fork(t_args *args, t_data *data)
+void	commands_fork(t_args *args, t_data *data)
 {
 	data->has_cmd = 0;
 	data->has_builtin = 0;
@@ -56,7 +42,9 @@ static void	execute_builtin_parent_process(t_data *data)
 		get_cmd_and_args(data->token, data->lexer, data);
 		if (fd[0] != -2 || fd[1] != -2)
 			redirect_files(fd[0], fd[1]);
+		// printf("exit status before : [%d]\n", data->exit_status);
 		execute_builtin(data, data->exec, NULL);
+		// printf("exit status after : [%d]\n", data->exit_status);
 		free_exec(data->exec);
 	}
 	else if (result == 2 || result == 4)
@@ -67,6 +55,22 @@ static void	execute_builtin_parent_process(t_data *data)
 	dup2(backup[1], 1);
 	close_files(backup[0], backup[1]);
 	close_files(fd[0], fd[1]);
+}
+
+static int	handle_process(t_data *data, t_list *temp, int *i, pid_t *pids)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork");
+		data->exit_status = 1;
+		return (1);
+	}
+	pids[data->args->index] = pid;
+		child_proc_utils(data, temp, &data->lexer[*i], pids);
+	return (0);
 }
 
 static void	execute_child_process(t_data *data, t_args *args)
@@ -85,14 +89,8 @@ static void	execute_child_process(t_data *data, t_args *args)
 			i++;
 			temp = temp->next;
 		}
-		pids[data->args->index] = fork();
-		if (pids[data->args->index] == -1)
-		{
-			perror("fork");
-			data->exit_status = 1;
+		if (handle_process(data, temp, &i, pids) == 1)
 			break ;
-		}
-		child_proc_utils(data, temp, &data->lexer[i], pids);
 		while (temp != NULL && data->lexer[i] != PIPE)
 		{
 			temp = temp->next;

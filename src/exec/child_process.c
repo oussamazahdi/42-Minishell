@@ -68,3 +68,19 @@ void	update_last_command(t_data *data, char *command)
 	if (!temp)
 		ft_lstadd_back(&data->env, ft_lstnew(new_value));
 }
+
+void	execute(t_data **data)
+{
+	t_args	args;
+
+	signal(SIGINT, ft_handler);
+	signal(SIGQUIT, ft_handler1);
+	(*data)->args = &args;
+	args.index = 0;
+	pipe(args.pipis);
+	pipe(args.pipes);
+	commands_fork(&args, *data);
+	// printf("exit status : [%d]\n", (*data)->exit_status);
+	unlink("/tmp/herdoc.txt");
+	close_pipes(&args);
+}

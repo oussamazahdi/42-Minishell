@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:28:57 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/01 14:15:45 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/04 18:52:24 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,20 @@ int	ft_parsing(t_data **line, char *read)
 	}
 	if (!read || !ft_strlen(read) || !check_spaces(read) || \
 		!ft_check_syntax(line, read) || !check_quotes(line, ft_chifr(read)))
-		return (0);
+		{
+			return (0);
+		}
 	return (1);
 }
+// int	ft_parsing(t_data **line, char *read)
+// {
+// 	if (read && !ft_strlen(read))
+// 	{
+// 		free(read);
+// 		return (0);
+// 	}
+// 	if (!read || !ft_strlen(read) || !check_spaces(read) || \
+// 		!ft_check_syntax(line, read) || !check_quotes(line, ft_chifr(read)))
+// 		return (0);
+// 	return (1);
+// }

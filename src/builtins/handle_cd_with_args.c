@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:57:15 by hel-band          #+#    #+#             */
-/*   Updated: 2024/10/01 18:07:55 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/04 17:16:06 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ static void	update_pwd_and_oldpwd(t_data *data, char *dir, char *old)
 		temp = temp->next;
 	}
 	if (flag == 0)
+	{
 		data->exit_status = 1;
+	}
 }
 
 static void	retrieve_and_update_env(t_data *data, char *dir)

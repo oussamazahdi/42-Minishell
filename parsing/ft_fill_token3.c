@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 14:26:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/30 09:53:33 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/04 17:39:36 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ static char	*extract_str(t_token *tmp)
 {
 	char	*str;
 
-	if (tmp->type == CMD && tmp->content[0] == 34)
+	if (tmp->type == CMD  && tmp->content && tmp->content[0] == 34)
 		str = ft_substr(tmp->content, 1, ft_strlen(tmp->content) - 2);
-	else if (tmp->type == CMD && tmp->content[0] == 39)
+	else if (tmp->type == CMD &&  tmp->content && tmp->content[0] == 39)
 		str = ft_substr(tmp->content, 1, ft_strlen(tmp->content) - 2);
 	else
 		str = ft_strdup(tmp->content);

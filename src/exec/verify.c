@@ -12,34 +12,19 @@
 
 #include "../../include/minishell.h"
 
-int	verify(int result, char *str, char **cmd, char **env)
-{
-	if (result == 0)
-	{
-		verify_permission(str, cmd, env);
-		return (0);
-	}
-	return (-1);
-}
-
 static void	exit_with_error(t_data *data, pid_t *pids, int exit_code, int flag)
 {
 	if (flag == 1)
 		ft_printf_fd(2, "%s: command not found\n", data->exec->cmd[0]);
 	free_exec(data->exec);
 	free(pids);
+	data->exit_status = exit_code;
 	free_for_all(data);
 	exit(exit_code);
 }
 
-static void	handle_command_execution(t_data *data, int fd[], pid_t *pids)
+static	void	validate_command(t_data *data, pid_t *pids)
 {
-	char	**env;
-	char	**path;
-	int		result;
-
-	env = NULL;
-	path = NULL;
 	if (ft_strlen(data->exec->cmd[0]) == 0 && data->process_count == 1)
 		exit_with_error(data, pids, 127, 1);
 	else if (ft_strlen(data->exec->cmd[0]) == 0 && data->process_count > 1)
@@ -48,9 +33,20 @@ static void	handle_command_execution(t_data *data, int fd[], pid_t *pids)
 		&& access(data->exec->cmd[0], F_OK))
 	{
 		ft_printf_fd(2, "%s: No such file or directory\n", data->exec->cmd[0]);
-		free_cmd_not_found(path, env, data, pids);
+		free_exec(data->exec);
+		free_for_all(data);
+		free(pids);
 		exit(127);
 	}
+}
+
+static void	handle_command_execution(t_data *data, int fd[], pid_t *pids)
+{
+	char	**env;
+	char	**path;
+	int		result;
+
+	validate_command(data, pids);
 	env = turn_env_to_arr(data->env);
 	path = find_path(env);
 	result = try_paths(data->exec, path, env);

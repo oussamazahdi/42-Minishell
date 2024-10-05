@@ -47,6 +47,9 @@
 # define ERR_INVALIDARG 128
 # define ERR_CTRLC 130
 
+
+// int g_ = 0;
+
 int	g_herdoc;
 /* Lexer */
 enum	e_lexeme
@@ -121,6 +124,7 @@ void	wait_all_processes(t_data *data, pid_t *pids, int flag);
 void	verify_permission(char *copy, char **cmd, char **env);
 int		verify(int result, char *str, char **cmd, char **env);
 void	get_cmd_and_args(t_list *token, int *lexer, t_data *data);
+void	commands_fork(t_args *args, t_data *data);
 
 /* Builtin */
 void	exit_builtin(t_data *data, pid_t *pids, char **args);
@@ -205,7 +209,7 @@ int		extract_expansion_components(char *ptr, char **befor, \
 char	*ft_normal_expand(char *ptr, t_data **line);
 int		ft_parsing(t_data **line, char *read);
 int		check_quotes(t_data **line, char *read);
-int		ft_protect_expand(t_data **line);
+int		ft_protect_expand(t_data **line, t_token *token, t_token *befor);
 char	*ft_remove_quots(char *read);
 void	ft_quotes_remove(t_data **line);
 char	**ft_split_pars(char *s, char c);
@@ -255,5 +259,10 @@ char	*ft_change_and_join_quotes(char *read);
 void	ft_builtings(t_data **line);
 char	*chefer_v2(char *read);
 char	*ft_goat(char *read);
+int		ft_clear_empty_nodes(t_token **token, t_token *prev);
+int		ft_quotes_flag(char *read);
+
+
+// void ft_print_token(t_token *token);
 
 #endif

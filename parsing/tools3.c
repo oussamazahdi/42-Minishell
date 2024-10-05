@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:51:29 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/30 18:58:09 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/02 14:54:15 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*ft_rebuild2(char *read, int *i)
 {
 	char	c;
-	int 	j;
+	int		j;
 
 	j = *i + 2;
 	while (read && read[j] && read[j] == ' ')

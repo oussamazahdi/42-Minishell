@@ -52,10 +52,14 @@ void	export_builtin(t_data *data, char **args)
 					args[i] = remove_plus(args[i]);
 				ft_lstadd_back(&data->env,
 					ft_lstnew_index(ft_strdup(args[i]), 1));
-				data->exit_status = 0;
 			}
 		}
 	}
-	if (data->exit_status != 0)
-		data->exit_status = 1;
+	if (data->exit_status == 1)
+		return;
+	// if (data->exit_status != 0)
+	// {
+	// 	data->exit_status = 1;
+	// }
+	data->exit_status = 0;
 }

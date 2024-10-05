@@ -4,7 +4,7 @@ BUILT_DIR		=	src/builtins/
 EXEC_DIR		=	src/exec/
 FREE_DIR		=	src/free/
 PARS_DIR		=	parsing/
-CFLAGS			=	-Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -g -fsanitize=address
 NAME			=	minishell
 LIBFT_DIR		=	libft
 LIBFT			=	$(LIBFT_DIR)/libft.a
@@ -24,6 +24,7 @@ SRC				=	main.c $(PARS_DIR)ft_add_split_to_token.c $(PARS_DIR)ft_create_env.c\
 					$(PARS_DIR)lexer.c $(PARS_DIR)lst_tools1.c $(PARS_DIR)signals.c\
 					$(PARS_DIR)tools1.c $(PARS_DIR)tools2.c $(PARS_DIR)tools4.c $(PARS_DIR)tools5.c\
 					$(PARS_DIR)tools3.c $(PARS_DIR)ft_normal_expande.c $(PARS_DIR)tools6.c \
+					$(PARS_DIR)ft_clear_empty_nodes.c\
 					$(INIT_DIR)init_utils.c $(BUILT_DIR)env_utils.c \
 					$(BUILT_DIR)execute_builtin.c $(BUILT_DIR)exit.c \
 					$(BUILT_DIR)env.c $(BUILT_DIR)pwd.c $(BUILT_DIR)unset.c \

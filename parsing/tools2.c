@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:17:41 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/09/28 15:42:15 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/04 18:22:41 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*ft_chifr(char *read)
 
 	i = 0;
 	read = ft_convert_negatives(read);
-	while (read[i])
+	while (read && read[i])
 	{
 		while (read[i] && read[i] != '"' && read[i] != 39)
 			i++;

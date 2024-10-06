@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:20:23 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/05 17:09:38 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/06 11:40:17 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static void	ft_herdoc_append(t_data **line)
 	while (tmp)
 	{
 		if (tmp->content && tmp->content[0] == '>' && \
-			ft_strlen(tmp->content) == 2 && tmp->next->content && tmp->flag == false)
+			ft_strlen(tmp->content) == 2 && tmp->next->content && \
+			tmp->flag == false)
 		{
 			tmp->type = APPEND;
 			tmp = tmp->next;

@@ -47,9 +47,6 @@
 # define ERR_INVALIDARG 128
 # define ERR_CTRLC 130
 
-
-// int g_ = 0;
-
 int	g_herdoc;
 /* Lexer */
 enum	e_lexeme
@@ -133,7 +130,7 @@ int		pwd_builtin(t_data *data);
 void	unset_builtin(t_data *data, char **args);
 void	export_builtin(t_data *data, char **args);
 // int		check_key(char *str);
-int	check_key(char *var, t_data *data);
+int		check_key(char *var, t_data *data);
 void	print_export(t_list *export, int *flag);
 int		echo_builtin(t_data *data, char **args);
 void	cd_builtin(t_data *data, char **args);
@@ -262,8 +259,5 @@ char	*chefer_v2(char *read);
 char	*ft_goat(char *read);
 int		ft_clear_empty_nodes(t_token **token, t_token *prev);
 int		ft_quotes_flag(char *read);
-
-
-void ft_print_token(t_token *token);
 
 #endif

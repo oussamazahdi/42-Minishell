@@ -41,26 +41,26 @@ SRC				=	main.c $(PARS_DIR)ft_add_split_to_token.c $(PARS_DIR)ft_create_env.c\
 
 OBJ				=	$(SRC:.c=.o)
 
-all: $(LIBFT) $(NAME) 
+all				: $(LIBFT) $(NAME) 
 
-$(LIBFT):
-		@$(MAKE) -C $(LIBFT_DIR)
+$(LIBFT)		:
+				@$(MAKE) -C $(LIBFT_DIR)
 
-%.o		: %.c $(INCLUDE)
-		$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+%.o				: %.c $(INCLUDE)
+				@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-$(NAME)	: $(OBJ) 
-		$(CC) $(OBJ) $(F_LFT) -lreadline $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $(NAME)
+$(NAME)			: $(OBJ) 
+				@$(CC) $(OBJ) $(F_LFT) -lreadline $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $(NAME)
+				@echo "\033[1m\033[32mMinishell compiled successfully ✅\033[0m"
 
-clean	:
-		@make clean -C $(LIBFT_DIR)
-		@rm -f $(OBJ)
+clean			:
+				@make clean -C $(LIBFT_DIR)
+				@rm -f $(OBJ)
 
-fclean	:	clean
-		@make fclean -C $(LIBFT_DIR)
-		@rm -f $(NAME)
+fclean			:	clean
+				@make fclean -C $(LIBFT_DIR)
+				@rm -f $(NAME)
 
+re				: fclean all
 
-re: fclean all
-
-.PHONY: all clean fclean re $(LIBFT)
+.PHONY			: all clean fclean re $(LIBFT)

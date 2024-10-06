@@ -82,7 +82,6 @@ static void	execute_child_process(t_data *data, t_args *args)
 	pids = ft_calloc(sizeof(int), data->process_count);
 	while (args->index < data->process_count)
 	{
-		// printf("exit bfr : [%d]\n", data->exit_status);
 		if (data->lexer[i] == PIPE)
 		{
 			i++;
@@ -96,7 +95,6 @@ static void	execute_child_process(t_data *data, t_args *args)
 			i++;
 		}
 		args->index++;
-		// printf("exit aft : [%d]\n", data->exit_status);
 	}
 	wait_all_processes(data, pids, data->process_count);
 	free(pids);

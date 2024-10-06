@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:01:55 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/05 12:10:10 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/06 11:39:31 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,3 @@ char	*ft_extract_exp(char *read, int *i, int last)
 	(*i) = last;
 	return (exp);
 }
-// char	*ft_extract_exp(char *read, int *i, int last)
-// {
-// 	char	*exp;
-
-// 	while (read[(*i)] != '$')
-// 		i++;
-// 	last = (*i) + 1;
-// 	while (read[last])
-// 	{
-// 		while (read[last] && read[last] == '$')
-// 			last++;
-// 		if (read[last] && (ft_isalnum(read[last]) || read[last] == '_' || read[last] == '?'))
-// 		{
-// 			while (read[last] && (ft_isalnum(read[last]) || read[last] == '_' || read[last] == '?'))
-// 				last++;
-// 			break ;
-// 		}
-// 		else if (read[last] && !ft_isalnum(read[last]) && read[last] != '_' && read[last] != '?')
-// 		{
-// 			while (read[last] && read[last] != ' ' && read[last] != '$' && read[last] != '"' && read[last] != 39)
-// 				last++;
-// 			break ;
-// 		}
-// 	}
-// 	exp = ft_substr(read, *i, last - *i);
-// 	(*i) = last;
-// 	return (exp);
-// }

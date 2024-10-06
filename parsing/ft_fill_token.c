@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:00:08 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/05 17:51:55 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/06 11:39:54 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	ft_fill_token(t_data **line, char *read)
 	tmp = (*line)->pars_token;
 	read = ft_addspace(read, 0, 0);
 	ft_create_token(line, read);
-	// ft_print_token((*line)->pars_token);
 	if (!line)
 		return (0);
 	if (!ft_protect_expand(line, tmp, NULL))
@@ -55,7 +54,5 @@ int	ft_fill_token(t_data **line, char *read)
 		tmp = tmp->next;
 	}
 	ft_token_tmp(line);
-	// printf("******************************************************************\n");
-	// ft_print_token((*line)->pars_token);
 	return (1);
 }

@@ -43,10 +43,7 @@ int	check_key(char *var, t_data *data)
 			if (var[i] == '+' && var[i + 1] == '=')
 				return (1);
 			else
-			{
-				// printf("read : [%c]\n", var[i]);
 				return (data->exit_status = 1, 0);
-			}
 		}
 		i++;
 	}

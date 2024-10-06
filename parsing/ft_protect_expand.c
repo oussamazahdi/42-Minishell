@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:11:22 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/05 17:12:51 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/06 11:58:31 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static int	ft_sp(char *read)
 	char	*ptr;
 
 	i = 0;
-	// printf("ptr bfr : [%s]\n", ft_convert_negatives(read));
 	ptr = ft_strtrim(ft_convert_negatives(read), " \t");
-	// printf("ptr aft : [%s]\n", ptr);
-	// printf("ptr aft : [%s]\n", ft_convert_negatives(read));
 	while (ptr && ptr[i] && (ptr[i] == ' ' || ptr[i] == '\t'))
 		i++;
 	if (i == ft_strlen(ptr))
@@ -79,7 +76,6 @@ static t_token	*ft_handle_expansion(t_data **line, \
 			APPEND || befor->type == INFILE || befor->type == OUTFILE))
 		{
 			ft_putstr_fd("minishell: ambiguous redirect\n", 2);
-			// printf("minishell: %s: ambiguous redirect\n", token->content);
 			(*line)->exit_status = 1;
 			return (ft_free_all(line), free(dst), NULL);
 		}
@@ -114,11 +110,7 @@ int	ft_protect_expand(t_data **line, t_token *token, t_token *befor)
 					token = token->next;
 		}
 		else
-		{
 			token = ft_handle_expansion(line, token, befor, NULL);
-			if (!token)
-				return (0);
-		}
 		befor = token;
 		if (token)
 			token = token->next;

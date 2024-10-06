@@ -6,7 +6,7 @@
 #    By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 13:59:17 by hel-band          #+#    #+#              #
-#    Updated: 2024/09/20 13:45:06 by ozahdi           ###   ########.fr        #
+#    Updated: 2024/10/06 11:27:05 by ozahdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,12 +33,13 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS) ../include/libft.h
-	$(LIBC) $(NAME) $(OBJS)
+$(NAME)		: $(OBJS) ../include/libft.h
+			@$(LIBC) $(NAME) $(OBJS)
+			@echo "\033[1m\033[32mLibft compiled successfully ✅\033[0m"
 
 
 %.o: %.c ../include/libft.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJS)

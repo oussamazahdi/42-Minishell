@@ -57,5 +57,5 @@ void	export_builtin(t_data *data, char **args)
 				return ;
 		}
 	}
-		data->exit_status = 0;
+	data->exit_status = 0;
 }

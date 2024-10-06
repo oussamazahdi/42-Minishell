@@ -25,8 +25,7 @@ void	unset_builtin(t_data *data, char **args)
 	{
 		if (!ft_check(args[i]) || ft_strchr(args[i], '=') != NULL)
 		{
-			ft_putstr_fd("minishell: unset: not a valid identifier\n", 2);
-			// printf("minishell: unset: `%s': not a valid identifier\n", args[i]);
+			printf("minishell: unset: `%s': not a valid identifier\n", args[i]);
 			data->exit_status = 1;
 			return ;
 		}
@@ -40,7 +39,7 @@ void	unset_builtin(t_data *data, char **args)
 		free_list(data->env);
 		data->env = NULL;
 	}
-		data->exit_status = 0;
+	data->exit_status = 0;
 }
 
 static void	ft_find(t_data *data, char *arr)

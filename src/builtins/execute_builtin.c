@@ -40,6 +40,7 @@ void	export_builtin(t_data *data, char **args)
 	export = NULL;
 	i = 0;
 	len = ft_arrsize(args);
+	// printf("len [%d]\n", len);
 	if (len == 1)
 		sort_env(copy_env_list(data->env, export));
 	else
@@ -52,10 +53,8 @@ void	export_builtin(t_data *data, char **args)
 					args[i] = remove_plus(args[i]);
 				ft_lstadd_back(&data->env,
 					ft_lstnew_index(ft_strdup(args[i]), 1));
+				data->exit_status = 0;
 			}
-			else
-				return ;
 		}
 	}
-	data->exit_status = 0;
 }

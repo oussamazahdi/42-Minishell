@@ -70,6 +70,7 @@ int	env_builtin(t_data *data, char **args)
 	if (ft_check_env(temp) == 1 || ft_arrsize(args) > 1)
 	{
 		printf("env: No such file or directory\n");
+		data->exit_status = 127;
 		return (EXIT_SUCCESS);
 	}
 	while (temp)

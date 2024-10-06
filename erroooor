@@ -203,3 +203,10 @@ export: '=============123': not a valid identifier
 declare -x a      =""
 ➜ Minishell $ 
 
+
+
+
+
+export a="a b= c d="
+export b=$a
+export $b

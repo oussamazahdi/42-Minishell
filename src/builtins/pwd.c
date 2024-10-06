@@ -32,6 +32,7 @@ int	pwd_builtin(t_data *data)
 			temp = temp->next;
 		}
 		data->exit_status = EXIT_FAILURE;
+		printf("%s\n", dir);
 		return (EXIT_FAILURE);
 	}
 	printf("%s\n", dir);

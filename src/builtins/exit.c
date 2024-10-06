@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hel-band <hel-band@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:24:53 by hel-band          #+#    #+#             */
-/*   Updated: 2024/10/02 15:13:51 by hel-band         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:57:08 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	exit_builtin(t_data *data, pid_t *pids, char **args)
 	else
 	{
 		exit_code = get_exit_code(args[1], &error);
+		if (args[1] && ft_strlen(args[1]) == 0) /*oussama add this condition*/
+			error = true;
 		if (error)
 			ft_print_free(data, pids);
 		else if (args[2])

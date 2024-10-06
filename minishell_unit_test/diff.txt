@@ -353,12 +353,13 @@
 
 [33mexit ""(B[m
 [35m< bash       (exited with 255)(B[m
-[35m> minishell  (exited with 0)
+[35m> minishell  (exited with 255)
 (B[m[94m----- STDERR -----(B[m
-1c1
+1c1,2
 < minishell: exit: : numeric argument required
 ---
 > exit
+> exit: numeric argument required
 
 
 [33mexit "+100"(B[m
@@ -1249,16 +1250,6 @@
 > dir: Is a directory
 
 
-[33mpwd >> a | echo apendicitis >> a | cat a(B[m
-[35m< bash       (exited with 0)(B[m
-[35m> minishell  (exited with 0)
-(B[m[94m----- STDOUT -----(B[m
-1d0
-< /Users/ozahdi/Desktop/zzz/minishell_unit_test
-2a2
-> /Users/ozahdi/Desktop/zzz/minishell_unit_test
-
-
 [33mnotacommand >> a(B[m
 [35m< bash       (exited with 127)(B[m
 [35m> minishell  (exited with 127)
@@ -1964,10 +1955,10 @@
 [35m< bash       (exited with 127)(B[m
 [35m> minishell  (exited with 1)
 (B[m[94m----- STDERR -----(B[m
-1c1
-< minishell: hello: command not found
----
+0a1
 > hello: command not found
+2d2
+< minishell: hello: command not found
 
 
 [33mecho bonjour >>> test(B[m
@@ -2226,12 +2217,13 @@
 
 [33mexit ""(B[m
 [35m< bash       (exited with 255)(B[m
-[35m> minishell  (exited with 0)
+[35m> minishell  (exited with 255)
 (B[m[94m----- STDERR -----(B[m
-1c1
+1c1,2
 < minishell: exit: : numeric argument required
 ---
 > exit
+> exit: numeric argument required
 
 
 [33m< f < Makefile cat(B[m
@@ -2294,8 +2286,8 @@
 < minishell: /////: Is a directory
 ---
 > lexer/: No such file or directory
-> /////: Is a directory
 > /////: is a directory
+> /////: Is a directory
 
 
 [33m< lexer/ /bin | "" | ok > ""(B[m
@@ -2926,8 +2918,11 @@
 
 [33mecho seg >< echo segf(B[m
 [35m< bash       (exited with 2)(B[m
-[35m> minishell  (exited with 0)
-(B[m[94m----- STDERR -----(B[m
+[35m> minishell  (exited with 2)
+(B[m[94m----- STDOUT -----(B[m
+0a1
+> minishell : syntax error near unexpected token
+[94m----- STDERR -----(B[m
 1,2d0
 < minishell: -c: syntax error near unexpected token `<'
 < minishell: -c: `echo seg >< echo segf'
@@ -3009,34 +3004,6 @@
 > echo -nnnnn: command not found
 
 
-[33m"ECho" -n -nnn"" "-"nnnnn(B[m
-[35m< bash       (exited with 0)(B[m
-[35m> minishell  (exited with 126)
-(B[m[94m----- STDOUT -----(B[m
-1d0
-< -nnn -nnnnn
-\ No newline at end of file
-[94m----- STDERR -----(B[m
-0a1
-> ECho: permission denied
-
-
-[33m"ECHO" "-n"(B[m
-[35m< bash       (exited with 0)(B[m
-[35m> minishell  (exited with 126)
-(B[m[94m----- STDERR -----(B[m
-0a1
-> ECHO: permission denied
-
-
-[33mECHO '''''-''n'(B[m
-[35m< bash       (exited with 0)(B[m
-[35m> minishell  (exited with 126)
-(B[m[94m----- STDERR -----(B[m
-0a1
-> ECHO: permission denied
-
-
 [33mwhy(B[m
 [35m< bash       (exited with 127)(B[m
 [35m> minishell  (exited with 127)
@@ -3065,62 +3032,6 @@
 < minishell: ozahdi: command not found
 ---
 > ozahdi: command not found
-
-
-[33m"ECHO"(B[m
-[35m< bash       (exited with 0)(B[m
-[35m> minishell  (exited with 126)
-(B[m[94m----- STDOUT -----(B[m
-1d0
-< 
-[94m----- STDERR -----(B[m
-0a1
-> ECHO: permission denied
-
-
-[33mECHO -nn(B[m
-[35m< bash       (exited with 0)(B[m
-[35m> minishell  (exited with 126)
-(B[m[94m----- STDOUT -----(B[m
-1d0
-< -nn
-[94m----- STDERR -----(B[m
-0a1
-> ECHO: permission denied
-
-
-[33mECHO -n -n(B[m
-[35m< bash       (exited with 0)(B[m
-[35m> minishell  (exited with 126)
-(B[m[94m----- STDOUT -----(B[m
-1d0
-< -n
-\ No newline at end of file
-[94m----- STDERR -----(B[m
-0a1
-> ECHO: permission denied
-
-
-[33mECHO "-"""n""n""n""n""n""nnnnnn-n(B[m
-[35m< bash       (exited with 0)(B[m
-[35m> minishell  (exited with 126)
-(B[m[94m----- STDOUT -----(B[m
-1d0
-< -nnnnnnnnnnn-n
-[94m----- STDERR -----(B[m
-0a1
-> ECHO: permission denied
-
-
-[33mECHO "-"""n""n""n""n""n""nnnnnn -n(B[m
-[35m< bash       (exited with 0)(B[m
-[35m> minishell  (exited with 126)
-(B[m[94m----- STDOUT -----(B[m
-1d0
-< -nnnnnnnnnnn -n
-[94m----- STDERR -----(B[m
-0a1
-> ECHO: permission denied
 
 
 [33mEXPORT(B[m

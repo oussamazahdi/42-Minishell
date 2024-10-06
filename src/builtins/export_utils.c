@@ -38,7 +38,7 @@ int	check_key(char *var, t_data *data)
 		// if (ft_isalnum(var[i]) == 0 && var[i] != '_'
 		// 	&& (var[i] == '+' && var[i + 1] != '='))
 		// 	return (data->exit_status = 1, 0);
-		if ((ft_isalnum(var[i]) == 0 && var[i] != '_'))
+		if ((ft_isalnum(var[i]) == 0 && var[i] != '_')) /*oussama change in this condition*/
 		{
 			if (var[i] == '+' && var[i + 1] == '=')
 				return (1);

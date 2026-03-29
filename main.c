@@ -6,22 +6,11 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:55:01 by ozahdi            #+#    #+#             */
-/*   Updated: 2024/10/06 14:03:15 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/06 15:35:02 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
-
-void ft_print_token2(t_list *token, int *lexer)
-{
-	int x = 0;
-	while (token)
-	{
-		printf("\x1b[38;5;214mtoken->content [%d] : [%s]\x1b[0m\n", lexer[x], token->content);
-		x++;
-		token = token->next;
-	}
-}
 
 static void	ft_init_struct(t_data **line)
 {
@@ -65,8 +54,6 @@ static void	ft_readline(t_data **line)
 			return ;
 		ft_fill_struct(line);
 		ft_lexer(line);
-		// ft_print_token2((*line)->token, (*line)->lexer);
-		// printf("builting [%d], process [%d]\n", (*line)->builtin_check, (*line)->process_count);
 		execute(line);
 		if (isatty(STDIN_FILENO) && tcsetattr(0, TCSANOW, &att))
 			perror("termios");

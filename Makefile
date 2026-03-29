@@ -47,11 +47,10 @@ $(LIBFT)		:
 				@$(MAKE) -C $(LIBFT_DIR)
 
 %.o				: %.c $(INCLUDE)
-				@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+				$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(NAME)			: $(OBJ) 
-				@$(CC) $(OBJ) $(F_LFT) -lreadline $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $(NAME)
-				@echo "\033[1m\033[32mMinishell compiled successfully ✅\033[0m"
+				$(CC) $(OBJ) $(F_LFT) -lreadline $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $(NAME)
 
 clean			:
 				@make clean -C $(LIBFT_DIR)

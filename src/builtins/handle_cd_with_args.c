@@ -6,7 +6,7 @@
 /*   By: ozahdi <ozahdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 11:57:15 by hel-band          #+#    #+#             */
-/*   Updated: 2024/10/06 12:08:27 by ozahdi           ###   ########.fr       */
+/*   Updated: 2024/10/06 14:55:22 by ozahdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	handle_cd_directory(t_data *data, char *arg)
 	char	*dir;
 	char	*error_message;
 
+	data->exit_status = 0;
 	navigate_to_directory(data, arg);
 	if (data->exit_status == 1)
 		return ;

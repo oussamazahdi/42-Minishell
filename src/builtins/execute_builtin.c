@@ -40,7 +40,6 @@ void	export_builtin(t_data *data, char **args)
 	export = NULL;
 	i = 0;
 	len = ft_arrsize(args);
-	// printf("len [%d]\n", len);
 	if (len == 1)
 		sort_env(copy_env_list(data->env, export));
 	else
